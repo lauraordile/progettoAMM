@@ -5,12 +5,39 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <html>
-    <head>
-        <title>TODO supply a title</title>
+   <head>
+        <title>GatTeender: trova il tuo gatto preferito</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Laura Ordile">
+        <meta name="keywords" content="Social network ,Nerdbook, amicizie e tanto altro">
     </head>
     <body>
-        <div>TODO write content</div>
-    </body>
+    <header> <!--non hanno messo il titolo,heder sta per testata del sito (significato semantico)utile per i motori di ricerca, ti consente di ottenere punti su google-->
+            <div id="title">
+                Nerdbook - Login
+            </div>
+        </header>
+        <nav>
+            <ol>
+                <li><a href="descrizione.html" >Descrizione</a></li> <!--creiamo il link con l'indirizzo relativo, blank apre una la stessa pagina con uun tag vuoto-->
+                <li><a href="profilo.html" >Profilo</a></li> <!--* crea una nuova tab-->
+                <li><a href ="bacheca.html">Bacheca</a></li>
+            </ol>
+        </nav>
+        <!--per mettere possword usare la post-->
+        <div id= "divBody">
+            <form action="servlet.java" method="post">
+                <div>
+                    <h2>Nome utente</h2>
+                    <input type="text" name="username">
+                    <h2>Password</h2>
+                    <input type="text" name="password">
+                </div>
+                <button type="submit">Invia</button> 
+                
+                </div>
+            </form>
+        </div>
+       </body>
 </html>
