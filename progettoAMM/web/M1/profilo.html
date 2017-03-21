@@ -1,16 +1,46 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+
 <html>
-    <head>
-        <title>TODO supply a title</title>
+   <head>
+        <title>GatTeender: trova il tuo gatto preferito</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Laura Ordile">
+        <meta name="keywords" content="Social network ,Nerdbook, amicizie e tanto altro">
     </head>
     <body>
-        <div>TODO write content</div>
-    </body>
+    <header> <!--non hanno messo il titolo,heder sta per testata del sito (significato semantico)utile per i motori di ricerca, ti consente di ottenere punti su google-->
+            <div id="title">
+                Nerdbook - Profilo
+            </div>
+        </header>
+        <nav>
+            <ol>
+                <li><a href="descrizione.html" >Descrizione</a></li> <!--creiamo il link con l'indirizzo relativo, blank apre una la stessa pagina con uun tag vuoto-->
+                <li><a href="login.html" >Login</a></li> <!--* crea una nuova tab-->
+            </ol>
+        </nav>
+        <!--per mettere possword usare la post-->
+        <div id= "divBody">
+            <form action="servlet.java" method="post">
+                <div>
+                    <label for="nome">Nome :</label>
+                    <input type="text" name="nome" id="nomeutente">
+                    <label for="cognome">Cognome:</label>
+                    <input type="text" name="cognome" id="cognome">
+                    <label for ="urlImg"> URL immagine del profilo:</label>
+                    <input type="url" name="url" id="urlImg">
+                    <label for ="textArea">Frase di presentazione:</label>
+                    <textarea name="textPost" id="textArea"></textarea>
+                    <label for="data">Data di nascita :</label>
+                    <input type="date" name="data" id ="data">
+                    <label for="password">Password :</label>
+                    <input type="password" name="password" id ="password">
+                    <label for="cpassword">Conferm password :</label>
+                    <input type="password" name="cpassword" id ="cpassword">
+                </div>
+                <button type="submit">Invia</button> 
+            </form>
+        </div>
+       </body>
 </html>
