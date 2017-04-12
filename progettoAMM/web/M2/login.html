@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 
 <html>
    <head>
@@ -10,26 +10,37 @@
         <link rel="stylesheet" type="text/css" href="style.css" media="screen">
    </head>
     <body>
-    <header> <!--non hanno messo il titolo,heder sta per testata del sito (significato semantico)utile per i motori di ricerca, ti consente di ottenere punti su google-->
-            <div id="title">
-                Nerdbook - Login
+       <div class="header">
+           <!--al cui interno c'è un altro contenitore title-->
+            <div id="titlel">
+                <h1>Nerdbook</h1>
             </div>
-        </header>
-        <nav>
+        
+        <!--<nav>
             <ol>
-                <li><a href="descrizione.html" >Descrizione</a></li> <!--creiamo il link con l'indirizzo relativo, blank apre una la stessa pagina con uun tag vuoto-->
-                <li><a href="profilo.html" >Profilo</a></li> <!--* crea una nuova tab-->
+                <li><a href="profilo.html" >Profilo</a></li>
                 <li><a href ="bacheca.html">Bacheca</a></li>
-            </ol>
-        </nav>
+                <li id="active"><a href="login.html" >Login</a></li> <!--* crea una nuova tab-->                
+               <!-- <li><a href="descrizione.html" >Descrizione</a></li> <!--creiamo il link con l'indirizzo relativo, blank apre una la stessa pagina con uun tag vuoto-->
+
+          <!--  </ol>
+        </nav>-->
+        </div>
+        
         <!--per mettere possword usare la post-->
-        <div class="divBody">
+        <div class="divBodyy">
             <form action="servlet.java" method="post">
-                <label for="nome">Nome :</label>
+                <div class="nome">
+                <label for="nome">Nome Utente </label>
                 <input type="text" name="nome" id="nomeutente">
-                <label for="password">Password :</label>
+                </div>
+                <div id="pasw">
+                <label for="password">Password </label>
                 <input type="password" name="password" id ="password">
-                <button type="submit">Invia</button> 
+                </div>
+                <!--<div id="button">-->
+                <button type="submit">Accedi</button> 
+                
             </form>
         </div>
        </body>

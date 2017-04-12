@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<<!DOCTYPE html>
 
 <html>
     <head>
@@ -10,33 +10,60 @@
         <link rel="stylesheet" type="text/css" href="style.css" media="screen">
     </head>
     <body>
-        <nav>
-        <ol>
-             <li><a href="descrizione.html" >Descrizione</a></li> <!--creiamo il link con l'indirizzo relativo, blank apre una la stessa pagina con uun tag vuoto-->
-             <li><a href="login.html">Login</a></li>   
-        </ol>
-        </nav>
-        <!--<body>  header e nav sono standard in gattinder-->
-        <header> <!--non hanno messo il titolo-->
+       <div class="header">
+           <!--al cui interno c'è un altro contenitore title-->
             <div id="title">
-                Nerdbook - Bacheca 
+                <h1>Nerdbook</h1>
             </div>
-        </header>
+        
+        <nav>
+            <ol>
+                <li><a href="profilo.html" >Profilo</a></li>
+                <li id="active"><a href ="bacheca.html">Bacheca</a></li>
+                <li><a href="login.html" >Login</a></li> <!--* crea una nuova tab-->                
+                <li><a href="descrizione.html" >Descrizione</a></li> <!--creiamo il link con l'indirizzo relativo, blank apre una la stessa pagina con uun tag vuoto-->
+            </ol>
+            <p>Daisy Duck</p>
+             <ul id="log">
+                 <li><a href ="login.html">Logout</a></li>
+            </ul>
+        </nav>
+           <div id="persone">
+               <h2>Persone</h2>
+               <p>Donald Fauntleroy Duck</p>
+               <p>Mickey Mouse</p>
+               <p>Minerva Mouse</p>
+           </div>
+           <div id="gruppi">
+               <h2>Gruppi</h2>
+               <p>Paperini</p>
+               <p>Topolini</p>
+           </div>
+        </div>
+        <!--<body>  header e nav sono standard in gattinder-->
            <div class="divBody">
                <div id="posts">
-                    <div>
-                        <img title="fotoProfiloPaperino" alt="Foto Profilo Paperino" src="immagini/papero.jpg">
+                   <div class="singp">
+                   <div class="imge">
+                     <img title="fotoProfiloPaperino" alt="Foto Profilo Paperino" src="immagini/papero.png">
+                   </div>
                         <h2>Donald Fauntleroy Duck</h2>
                         <p>Qua qua qua qua qua.... qua</p>
                     </div>
-                    <div > 
+                    <div class="singp"> 
+                        <div class="imge">
                         <img title="fotoProfiloTopolino" alt="Foto Profilo Topolino" src="immagini/mouse2.png">
+                        </div>
                         <h2>Mickey Mouse</h2>
                         <p>Ciao a tutti!oggi io e Minnie siamo andati a comprare tanto formaggio, siamo proprio tanto golosi.</p>
+                        <div class="postimm">
                         <img title="fotoProfilo" alt="Foto Profilo" src="immagini/formaggi.png">
+                        </div>
                     </div>
-                    <div > 
+                    <div class="singp"> 
+                        <div class="imge">
                         <img title="fotoProfiloMinnie" alt="Foto Profilo Minnie" src="immagini/Minnie.png">
+                        </div>
                         <h2>Minerva Mouse</h2>
                         <p>Ciao ragazze!! oggi posto un video di me e della mia amica paperina. Bacini.<a href="https://www.youtube.com/watch?v=B7V5mZcUarc" target="_blank"></a> https://www.youtube.com/watch?v=B7V5mZcUarc </p> 
                     </div>  

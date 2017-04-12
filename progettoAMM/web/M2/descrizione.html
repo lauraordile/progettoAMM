@@ -10,17 +10,25 @@
     </head>
     <body><!--tutto ciò che vogliamo visualizzare nello schermo-->
         <!--definisco un contenitore che si chiamerà header-->
-        <div id="header">
+        <div class="header">
            <!--al cui interno c'è un altro contenitore title-->
             <div id="title">
                 <h1>Nerdbook</h1>
             </div>
-           <nav>
-           <ol>
-             <li><a href="login.html">Login</a></li>   
-           </ol>
-           </nav>
+        
+        <nav>
+            <ol>
+                <li><a href="profilo.html" >Profilo</a></li>
+                <li><a href ="bacheca.html">Bacheca</a></li>
+                <li><a href="login.html" >Login</a></li> <!--* crea una nuova tab-->                
+                <li id="active"><a href="descrizione.html" >Descrizione</a></li> <!--creiamo il link con l'indirizzo relativo, blank apre una la stessa pagina con uun tag vuoto-->
+
+            </ol>
+              <p>Daisy Duck</p>
+            <p id="log">Logout</p>
+        </nav>
         </div>
+        
         <div class="divBody"> <!-- contiene tutto il contenuto della pagina-->
              <h2> Descrizione social network:</h2> 
              <div id ="rivolto">
