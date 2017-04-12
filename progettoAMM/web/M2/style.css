@@ -502,6 +502,7 @@ button{
     top: 80px;
     position: fixed;
 }
+}
 @media only screen and (max-width: 480px){
       body{
     font: 12px/25px "Open Sans",Arial,sans-serif; /*dimensione font e della linea e spazio tra le righe, se non c'e usa arial altrimenti sens serif'*/
