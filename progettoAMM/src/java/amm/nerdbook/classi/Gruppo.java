@@ -5,31 +5,40 @@
  */
 package amm.nerdbook.classi;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author Laura
  */
-public class Gruppi {
+public class Gruppo {
+
     
     private int id;
-    private Utentiregistrati [] utentiGruppo;
+    private List<UtenteRegistrato>  utentiGruppo;
     private String nomeGruppo;
+    private String descrizione;
     
-    public Gruppi(){
+    public Gruppo(){
         id=0;
         nomeGruppo="";
-        utentiGruppo= new Utentiregistrati[100];
+        utentiGruppo = new ArrayList<>();
     }
 
     /**
      * @param utentiGruppo l'insieme degli utenti del gruppo
      */
-    public void setUtentiGruppo(Utentiregistrati[] utentiGruppo) {
-	if (utentiGruppo.length!=0)
+    public void setUtentiGruppo(List<UtenteRegistrato> utentiGruppo) {
+	if (utentiGruppo.size()!=0)
 	this.utentiGruppo = utentiGruppo;
     }
     
-    public Utentiregistrati[] getUtentiGruppo(){
+    public void addUtente(UtenteRegistrato utente){
+        this.utentiGruppo.add(utente);
+    }
+    
+    public List<UtenteRegistrato> getUtentiGruppo(){
         return utentiGruppo;
     }
     /**
@@ -59,5 +68,17 @@ public class Gruppi {
     public void setNomeGruppo(String nomeGruppo) {
         this.nomeGruppo = nomeGruppo;
     }
+    /**
+     * @return the descrizione
+     */
+    public String getDescrizione() {
+        return descrizione;
+    }
 
+    /**
+     * @param descrizione the descrizione to set
+     */
+    public void setDescrizione(String descrizione) {
+        this.descrizione = descrizione;
+    }
 }

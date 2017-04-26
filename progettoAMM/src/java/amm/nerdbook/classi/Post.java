@@ -16,7 +16,7 @@ public class Post {
     };
     
     protected int id;
-    protected Utentiregistrati user;
+    protected UtenteRegistrato user;
     private String contenuto;
     private Type postType;
 
@@ -44,14 +44,14 @@ public class Post {
     /**
      * @return the user
      */
-    public Utentiregistrati getUser() {
+    public UtenteRegistrato getUser() {
         return user;
     }
 
     /**
      * @param user the user to set
      */
-    public void setUser(Utentiregistrati user) {
+    public void setUser(UtenteRegistrato user) {
         this.user = user;
     }
 
@@ -65,7 +65,7 @@ public class Post {
     /**
      * @param contenuto il contenuto da scrivere
      */
-    public void setContenuto(String contenuto) {
+    public void setContent(String contenuto) {
         this.contenuto = contenuto;
     }
 
