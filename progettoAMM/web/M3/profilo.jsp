@@ -1,5 +1,11 @@
+<%-- 
+    Document   : profilo
+    Created on : 27-apr-2017, 15.28.25
+    Author     : Laura
+--%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-
 <html>
    <head>
         <title>Nerdbook: trova il tuoi nerdfriends</title>
@@ -18,7 +24,7 @@
         
         <nav>
             <ol>
-                <li id="active"><a href="profilo.html" >Profilo</a></li>
+                <li class="activ"><a href="profilo.html" >Profilo</a></li>
                 <li><a href ="bacheca.html">Bacheca</a></li>
                 <li><a href="login.html" >Login</a></li> <!--* crea una nuova tab-->                
                 <li><a href="descrizione.html" >Descrizione</a></li> <!--creiamo il link con l'indirizzo relativo, blank apre una la stessa pagina con uun tag vuoto-->
@@ -29,20 +35,24 @@
             </div>
             <p>Daisy Duck</p>
             <ul id="log">
-                 <li><a href ="descrizione.html">Logout</a></li>
+                 <li><a href ="login.html">Logout</a></li>
             </ul>
         </nav>
-           <div id="persone">
-               <h2>Persone</h2>
-               <p>Donald Fauntleroy Duck</p>
-               <p>Mickey Mouse</p>
-               <p>Minerva Mouse</p>
-           </div>
-           <div id="gruppi">
-               <h2>Gruppi</h2>
-               <p>Paperini</p>
-               <p>Topolini</p>
-           </div>
+            <div class="persone">
+            <h2>Persone</h2>
+            <ul>
+                <li>Donald Fauntleroy Duck</li>
+                <li>Mickey Mouse</li>
+                <li>Minerva Mouse</li>
+             </ul>
+        </div>
+        <div class="gruppi">
+            <h2>Gruppi</h2>
+            <ul>
+                <li>Paperini</li>
+                <li>Topolini</li>
+            </ul>
+        </div>
         </div>
         <!--per mettere possword usare la post-->
         <div class="divBodyp">

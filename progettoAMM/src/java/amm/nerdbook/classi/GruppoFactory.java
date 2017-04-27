@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package amm.nerdbook.classi;
-import java.util.List;
 import java.util.ArrayList;
 /**
  *
@@ -64,16 +63,14 @@ public class GruppoFactory {
         return null;
     }
 
-    public List getGruppoList(UtenteRegistrato utente) {
-
-        List<Gruppo> listaGruppo = new ArrayList<Gruppo>();
-
-        for (Gruppo gruppo : this.listaGruppo) {
-            if (gruppo.getUtentiGruppo().equals(utente)) {
-                listaGruppo.add(gruppo);
-            }
+      public Gruppo getUtenteByName(int idGruppo)
+    {
+        for (Gruppo gruppo : this.listaGruppo) 
+        {
+            if (gruppo.getNomeGruppo().equals(idGruppo))
+                return gruppo;
         }
-        return listaGruppo;
-    }
-
+        return null;
+    } 
+    
 }

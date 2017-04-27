@@ -12,18 +12,22 @@ package amm.nerdbook.classi;
 public class Post {
     
     public enum Type {
-        TEXT, IMAGE
+        TEXT, IMAGE, LINK
     };
     
     protected int id;
     protected UtenteRegistrato user;
-    private String contenuto;
+    private String contenutoTesto;
+    private String contenutoImm;
+    private String contenutoLink;
     private Type postType;
 
     public Post() {
         id = 0;
         user = null;
-        contenuto = "";
+        contenutoTesto = "";
+        contenutoImm = "";
+        contenutoLink = "";
         postType = Type.TEXT;
     }
 
@@ -56,20 +60,6 @@ public class Post {
     }
 
     /**
-     * @return il contenuto
-     */
-    public String getContent() {
-        return contenuto;
-    }
-
-    /**
-     * @param contenuto il contenuto da scrivere
-     */
-    public void setContent(String contenuto) {
-        this.contenuto = contenuto;
-    }
-
-    /**
      * @return the postType
      */
     public Type getPostType() {
@@ -81,5 +71,47 @@ public class Post {
      */
     public void setPostType(Type postType) {
         this.postType = postType;
+    }
+
+    /**
+     * @return the contenutoTesto
+     */
+    public String getContenutoTesto() {
+        return contenutoTesto;
+    }
+
+    /**
+     * @param contenutoTesto the contenutoTesto to set
+     */
+    public void setContenutoTesto(String contenutoTesto) {
+        this.contenutoTesto = contenutoTesto;
+    }
+
+    /**
+     * @return the contenutoImm
+     */
+    public String getContenutoImm() {
+        return contenutoImm;
+    }
+
+    /**
+     * @param contenutoImm the contenutoImm to set
+     */
+    public void setContenutoImm(String contenutoImm) {
+        this.contenutoImm = contenutoImm;
+    }
+
+    /**
+     * @return the contenutoLink
+     */
+    public String getContenutoLink() {
+        return contenutoLink;
+    }
+
+    /**
+     * @param contenutoLink the contenutoLink to set
+     */
+    public void setContenutoLink(String contenutoLink) {
+        this.contenutoLink = contenutoLink;
     }
 }
