@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html>
+   <head>
+        <title>Nerdbook: trova il tuoi nerdfriends</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Laura Ordile">
+        <meta name="keywords" content="Social network ,Nerdbook, amicizie e tanto altro">
+    </head>
+    <body>
+    <header> <!--non hanno messo il titolo,heder sta per testata del sito (significato semantico)utile per i motori di ricerca, ti consente di ottenere punti su google-->
+            <div id="title">
+                Nerdbook - Login
+            </div>
+        </header>
+        <nav>
+            <ol>
+                <li><a href="descrizione.html" >Descrizione</a></li> <!--creiamo il link con l'indirizzo relativo, blank apre una la stessa pagina con uun tag vuoto-->
+                <li><a href="profilo.html" >Profilo</a></li> <!--* crea una nuova tab-->
+                <li><a href ="bacheca.html">Bacheca</a></li>
+            </ol>
+        </nav>
+        <!--per mettere possword usare la post-->
+        <div id= "divBody">
+            <form action="servlet.java" method="post">
+                <label for="nome">Nome :</label>
+                <input type="text" name="nome" id="nomeutente">
+                <label for="password">Password :</label>
+                <input type="password" name="password" id ="password">
+                <button type="submit">Invia</button> 
+            </form>
+        </div>
+       </body>
+</html>

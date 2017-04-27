@@ -1,0 +1,702 @@
+
+body{
+    background-color: #E5D9EE;
+    font: 15px/25px "Open Sans",Arial,sans-serif; /*dimensione font e della linea e spazio tra le righe, se non c'e usa arial altrimenti sens serif'*/
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+h1{
+    margin-bottom: 0px;
+    margin-top: 0px; /*Esaminato con inspector*/
+    color: #111111;
+    font: 35px/40px "Open Sans", Arial, sans-serif;
+    /*font-weight: bold;*/
+    /*border-style: solid;*/
+    float: left;
+}
+
+h2{
+    margin-top: 0px; /*Esaminato con inspector*/
+    margin-bottom: 0px;
+    color: #333333;
+    font: 23px/40px "Open Sans", Arial, sans-serif;
+    font-weight: bold;
+}
+
+h3{
+    margin-top: 0px; /*Esaminato con inspector*/
+    color: #333333;
+    font: 17px/40px "Open Sans", Arial, sans-serif;
+    font-weight: bold;
+}
+
+
+a:link{
+    font-size: 25px;
+    text-decoration: none;
+    color: #111111;
+    
+}
+a:visited{
+    font-size: 20px;
+    text-decoration: none;
+    color: #333333;
+}
+a:hover{
+    color: #310062;
+    font-weight: bold;
+}
+nav .activ a{
+    color: #ffffff;
+    background: #310062;
+    padding-top: 15px;
+    padding-bottom: 3px;
+    padding-left: 4px;
+    padding-right: 4px;
+}
+#input{
+     background-color: #E5D9EE;
+    font: 15px/25px "Open Sans",Arial,sans-serif;
+    width: 100px;
+}
+li {
+    list-style: none;
+    margin-top:0px;
+    display:inline;
+}
+label,input,textArea,button{
+    color: #111111; /* Colore del testo */
+    font: 15px/20px "Open Sans", Arial, sans-serif;
+    width: 290px;
+    height: 25px;
+    margin: 0px;
+    
+}
+input,textArea,button{
+    border: 1px solid #310062;
+}
+#persone{
+    position: fixed;
+    top: 30px;
+}
+ol li{
+    top: 0px;
+    margin-bottom: 0px;
+    text-align: center; /* orizzontale */
+    color: #333333;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+nav ol {
+    height: 40px;
+    width: 1200px;
+    margin-top:0px;
+    position: absolute ;
+    left: 251px;
+    /*border:1px solid #000;   */
+    position: fixed;
+    text-align: left; /* orizzontale */
+    line-height: 38px;
+    border-bottom: 1px solid #000;
+     background-color: #ffffff;
+     top: 0px;
+     padding-left: 0px;
+     z-index: 2;
+}
+.divBody{
+    padding-top: 50px;   
+    border-bottom: 1px solid #000;
+    margin-left: 300px;
+} 
+
+#title h1{ 
+   color: #310062;
+   height: 40px;
+    width: 250px;
+    position: absolute;
+    right: -30px;
+    left: 0px;   
+    position: fixed;
+    text-align: center; /* orizzontale */
+    border-bottom: 1px solid #000;
+    border-right: 1px solid #000;
+    background-color: #ffffff;
+    font-size: 37px;
+    font-weight: bolder;
+}
+
+/*.header{
+    border-bottom: 1px solid #000; 
+}*/
+.persone,.gruppi{
+    /*margin-left: 40px;*/
+    width: 250px;
+    text-align: left; /* orizzontale */
+    border-right: 1px solid #000;
+    background: #E5D9EE;
+    position: fixed;
+    left: 0px;
+}
+.persone li a, .gruppi li a{
+    margin-bottom: 0px;
+    margin-top: 0px; /*Esaminato con inspector*/
+    font: 15px/40px "Open Sans", Arial, sans-serif;
+    padding-left: 10px;
+    margin-right: 30px;
+}
+.gruppi{
+    height: 500px;
+    top: 215px;
+    background-color: #ffffff;
+}
+.persone{
+    height: 200px;
+    top: 41px;
+    background-color: #ffffff;
+    
+}
+.persone h2,.gruppi h2{
+    margin-top: 10px; /*Esaminato con inspector*/
+    margin-bottom: 0px;
+    color: #333333;
+    font: 20px/40px "Open Sans", Arial, sans-serif;
+    font-weight: bold;
+    padding-left: 20px;
+}
+nav p{
+    width: 90px;
+    right: 0%;
+    margin-top: 0px;
+    margin-left: 1200px;
+    float: right;
+    position: fixed;
+    padding-left: 20px;
+    z-index: 2;
+}
+#log {
+    margin-top: 14px;
+    text-decoration: underline;
+    float: right;
+    position: fixed;
+    margin-left: 1160px;
+    right: 1.5%;
+    z-index: 2;
+}
+#log li a{
+     font-size: 15px;
+}
+
+.imge > img{
+  width: 60px;
+  height: 60px;
+  overflow: hidden;
+  float: left;
+}
+#posts h2{
+    margin-top: 15px;
+    top: 300px;
+    font-size: 20px;
+}
+#posts p{
+    padding-bottom: 30px;
+    margin-top: 0px;
+    text-align: left;
+    padding-left: 60px;
+}
+.postimm > img {
+    width: 276px;
+    height: 77px;
+    overflow: hidden;
+    margin-left: 50px;
+}
+#posts {
+    width: 400px;
+}
+.singp {
+    border: 1px solid #310062;
+    margin-top: 15px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    background: #ffffff;
+}
+.divBodyy{
+    margin-top: 100px; 
+    width: 360px;
+    height: 230px;
+    margin-left: 35%;
+    margin-right: 35%;
+    border: 1px solid #310062;
+    background: #ffffff;
+}
+
+.nome ,#pasw{
+    margin-left: 24px;
+    margin-right: 24px;
+    top: 250px;
+    margin-bottom: 10px;
+    margin-top: 18px;
+}
+button:focus {
+    background-color: #310062;
+    color: #ffffff;
+}
+button{
+    margin-top: 10px;
+   /* padding: 13px;*/
+   margin-left: 23.5px;
+   width: 295px;
+   height: 30px;
+    
+}
+#titlel h1{
+     margin-left: 42%;
+    margin-right: 42%;
+    font-weight: bolder;
+    margin-top: -100px;
+}
+#prof{
+    width: 510px;
+    height: 250px;
+    position: relative;
+    top: -150px;
+    left: 150px;
+    margin-right: 35px;
+    float: left;
+}
+.divBodyp{
+     padding-top: 50px;   
+    margin-left: 260px;
+    width: 900px;
+    height: 350px;
+}
+#butp button{
+   margin-top: 200px;
+   margin-left: 35px;
+   width: 510px;
+   height: 30px;
+   position: relative;
+   top: -340px;
+   left: 115px;
+}
+#prof label{
+    float: left;
+    clear: left;
+    width: 200px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+#prof input,#prof textarea{
+    float: right;
+    clear: right;
+}
+#profile{
+    width: 150px;
+}
+#profile > img{
+    position: relative;
+    top: 20px;
+    left: 4px;
+    width: 120px;
+  height: 100%;
+  overflow: hidden;
+    float: left;
+    clear: left;
+}
+.singp a{
+    font-size: 15px;
+    
+}
+.header img{
+    width: 55px;
+    height: 44px;
+    left: 18%;
+    right: 18%;
+    top: 20px;
+    position: fixed;
+}
+/*1024px 480px*/
+@media only screen and (max-width: 1024px){
+    body{
+    font: 13px/25px "Open Sans",Arial,sans-serif; /*dimensione font e della linea e spazio tra le righe, se non c'e usa arial altrimenti sens serif'*/
+    }
+    h1{ 
+    font: 32px/40px "Open Sans", Arial, sans-serif;
+    }
+
+    h2{
+    font: 19px/40px "Open Sans", Arial, sans-serif;
+    font-weight: bold;
+    }
+
+    h3{
+    font: 13px/40px "Open Sans", Arial, sans-serif;
+    font-weight: bold;
+    }
+
+    a:link{
+    font-size: 18px;
+    text-decoration: none;
+    color: #111111;
+    
+    }
+    a:visited{
+    font-size: 18px;
+    text-decoration: none;
+    color: #333333;
+    }
+    a:hover{
+    font-weight: bold;
+    }
+    nav #active a{
+    padding-bottom: 8px;
+    }
+    ol{
+        margin-left: -50px;
+    }
+    label,input,textArea,button{
+    font: 13px/20px "Open Sans", Arial, sans-serif;
+    width: 260px;
+    height: 23px;
+    }
+    ol li{
+    margin-left: 8px;
+    margin-right: 8px;
+    }
+    .divBody{
+    margin-left: 35.5%;
+}
+    #title h1{
+    height: 40px;
+    width: 200px;
+    font-size: 33px;
+    font-weight: bolder;
+    position: fixed;
+    }
+  
+    .persone,.gruppi{
+    width: 200px;
+    z-index: 2;
+    }
+    .persone li ,.gruppi li{
+    font: 14px/40px "Open Sans", Arial, sans-serif;
+    padding-left: 15px;
+    }
+    
+    .persone h2,.gruppi h2{
+    margin-top: 8px; /*Esaminato con inspector*/
+    font: 18px/40px "Open Sans", Arial, sans-serif;
+    font-weight: bold;
+    padding-left: 15px;
+    }
+    nav p{
+    width: 70px;
+    right: 0%;
+    padding-left: 10px;
+    }
+    #log {
+        position: relative;
+        width: 70px;
+    right: 0%;
+    padding-left: 10px;
+    right: 1%;
+    }
+    #log li a{
+     font-size: 13.5px;
+    }
+ 
+    #posts h2{
+    margin-top: 15px;
+    top: 300px;
+    font-size: 17px;
+    }
+    #posts p{
+    padding-bottom: 30px;
+    margin-top: 0px;
+    text-align: left;
+    padding-left: 17%;
+    }
+    .postimm > img {
+    margin-left: 15%;
+    }
+  
+    .divBodyy{
+    margin-top: 100px;
+    width: 340px;
+    height: 230px;
+    margin-left: auto;
+    margin-right: auto;
+    }
+
+    button{
+    margin-left: 7%;
+    margin-right: 7%;
+    margin-top: 10px;
+    width: 78%;
+    height: 30px;
+    
+    }
+    #titlel h1{
+    margin-left: 40%;
+    margin-right: 40%;
+    font-weight: bolder;
+    margin-top: -45px;
+    }
+    #prof{
+    width: 260px;
+    height: 150px;
+    position: relative;
+    top: -150px;
+    left: 150px;
+    margin-right: 35px;
+    float: left;
+    }
+    .divBodyp{  
+    margin-left: 200px;
+    width: 70%;
+    }
+    #butp button{
+        margin-top: 500px;
+        margin-left: 30px;
+        width: 260px;
+        height: 30px;
+        position: relative;
+        top: -340px;
+        left: 115px;
+    }
+    #prof label{
+        float: left;
+        clear: left;
+        width: 200px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    #prof input,#prof textarea{
+        float: right;
+        clear: right;
+    }   
+    #profile{
+    width: 150px;
+    }
+    #profile > img{
+        position: relative;
+        top: 20px;
+        left: 4px;
+        width: 120px;
+        height: 100%;
+        overflow: hidden;
+        float: left;
+        clear: left;
+    }
+    
+.singp a{
+    font-size: 13px;
+}
+.header img{
+    width: 54px;
+    height: 44px;
+    left: 70px;
+    right: 30%;
+    top: 80px;
+    position: fixed;
+}
+}
+@media only screen and (max-width: 480px){
+      body{
+    font: 12px/25px "Open Sans",Arial,sans-serif; /*dimensione font e della linea e spazio tra le righe, se non c'e usa arial altrimenti sens serif'*/
+    }
+    h1{ 
+    font: 30px/40px "Open Sans", Arial, sans-serif;
+    }
+
+    h2{
+    font: 18px/40px "Open Sans", Arial, sans-serif;
+    font-weight: bold;
+    }
+
+    h3{
+    font: 12px/40px "Open Sans", Arial, sans-serif;
+    font-weight: bold;
+    }
+
+    a:link{
+    font-size: 15px;  
+    }
+    a:visited{
+    font-size: 15px;
+    }
+    a:hover{
+    font-weight: bold;
+    }
+    nav #active a{
+    padding-bottom: 10px;
+    }
+    ol{
+        margin-left: -105px;
+    }
+    label,input,textArea,button{
+    font: 13px/20px "Open Sans", Arial, sans-serif;
+    width: 230px;
+    height: 23px;
+    }
+    ol li{
+    margin-left: 8px;
+    margin-right: 4px;
+    }
+    .divBody{
+    margin-left: 35.5%;
+}
+    #title h1{
+    height: 40px;
+    width: 145px;
+    font-size: 28px;
+    font-weight: bolder;
+    position: fixed;
+    }
+  
+    .persone,.gruppi{
+    width: 145px;
+    z-index: 2;
+    }
+    .persone li,.gruppi li{
+    font: 12px/40px "Open Sans", Arial, sans-serif;
+    padding-left: 5px;
+    height: 25px;
+    }
+   
+    .persone h2,.gruppi h2{
+    margin-top: 8px; /*Esaminato con inspector*/
+    font: 18px/40px "Open Sans", Arial, sans-serif;
+    font-weight: bold;
+    padding-left: 5px;
+    height: 30px;
+    }
+    nav p{
+    font-size: 15px;
+    width: 79px;
+    right: 78%;;
+    position: fixed;
+    top: 490px;
+    z-index: 3;
+    }
+    #log {
+    font-size: 15px;
+    width: 79px;
+    /*position: relative;*/
+    top: 450px;
+    right: 78%;
+    z-index: 3;
+    position: fixed;
+    }
+    #log li a{
+     font-size: 13.5px;
+    }
+ 
+    #posts h2{
+    margin-top: 15px;
+    position: relative;
+    top: -18px;
+    font-size: 16px;
+    }
+    #posts p{
+        position: relative;
+        top: -18px;
+    padding-bottom: 30px;
+    margin-top: 0px;
+    text-align: left;
+    padding-left: 17%;
+    }
+    .postimm > img {
+    
+    position: relative;
+    top: -19px;
+    left: -20%;
+    }
+    .singp{
+        width: 60%;
+    }
+    .divBodyy{
+    margin-top: 100px;
+    width: 340px;
+    height: 230px;
+    margin-left: auto;
+    margin-right: auto;
+    }
+
+    button{
+    margin-left: 7%;
+    margin-right: 7%;
+    margin-top: 10px;
+    width: 70%;
+    height: 30px;
+    
+    }
+    #titlel h1{
+    margin-left: 40%;
+    margin-right: 40%;
+    font-weight: bolder;
+    margin-top: -45px;
+    }
+    #prof{
+    width: 235px;
+    height: 150px;
+    position: relative;
+    top: -35px;
+    left: 70%;
+    margin-right: 35px;
+    /*float: left;*/
+    }
+    .divBodyp{  
+    margin-left: 62px;
+    width: 70%;
+    position: relative;
+    top: 40px;
+    }
+    #butp button{
+        margin-top: 500px;
+        margin-left: 33px;
+        width: 237px;
+        height: 40px;
+        position: relative;
+        top: -230px;
+        left: 50%;
+    }
+    #prof label{
+        float: left;
+        clear: left;
+        width: 200px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    #prof input,#prof textarea{
+        float: right;
+        clear: right;
+    }   
+    #profile{
+    width: 150px;
+    }
+    #profile > img{
+        position: relative;
+        top: 350px;
+        left: 18px;
+        width: 90px;
+        height: 120px;
+        overflow: hidden;
+        float: left;
+        clear: left;
+        z-index: 2;
+        position: fixed;
+    }
+.singp a{
+    font-size: 12px;
+}
+.header img{
+    width: 55px;
+    height: 44px;
+    left: 20px;
+    right: 100%;
+    top: 20px;
+    position: fixed;
+}
+}
