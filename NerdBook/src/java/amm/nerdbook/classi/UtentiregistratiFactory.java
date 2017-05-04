@@ -5,6 +5,7 @@
  */
 package amm.nerdbook.classi;
 import java.util.ArrayList;
+import java.util.List;
 /**
  *
  * @author Laura
@@ -87,6 +88,19 @@ public class UtentiregistratiFactory {
         for (UtenteRegistrato utente : this.listaUtentiregistrati){
             if(utente.getNome().equals(user)&& utente.getPassword().equals(password)){
                 return utente.getId();
+            }
+        }
+        return -1;
+    }
+    
+     public List getListaUtenti() {
+        return listaUtentiregistrati;
+    }
+   
+     public int login(String nome ,String password) {
+        for (UtenteRegistrato user : this.listaUtentiregistrati) {
+            if (user.getNome().equals(nome) && user.confermaPassword(password)) {
+                return user.getId();
             }
         }
         return -1;

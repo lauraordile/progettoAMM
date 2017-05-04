@@ -16,44 +16,8 @@
         <link rel="stylesheet" type="text/css" href="style.css" media="screen">
    </head>
     <body>
-        <div class="header">
-           <!--al cui interno c'è un altro contenitore title-->
-            <div id="title">
-                <h1>Nerdbook</h1>
-            </div>
-        
-        <nav>
-            <ol>
-                <li class="activ"><a href="profilo.html" >Profilo</a></li>
-                <li><a href ="bacheca.html">Bacheca</a></li>
-                <li><a href="login.html" >Login</a></li> <!--* crea una nuova tab-->                
-                <li><a href="descrizione.html" >Descrizione</a></li> <!--creiamo il link con l'indirizzo relativo, blank apre una la stessa pagina con uun tag vuoto-->
-               
-            </ol>
-            <div id="img">
-                
-            </div>
-            <p>Daisy Duck</p>
-            <ul id="log">
-                 <li><a href ="login.html">Logout</a></li>
-            </ul>
-        </nav>
-            <div class="persone">
-            <h2>Persone</h2>
-            <ul>
-                <li>Donald Fauntleroy Duck</li>
-                <li>Mickey Mouse</li>
-                <li>Minerva Mouse</li>
-             </ul>
-        </div>
-        <div class="gruppi">
-            <h2>Gruppi</h2>
-            <ul>
-                <li>Paperini</li>
-                <li>Topolini</li>
-            </ul>
-        </div>
-        </div>
+       <c:set var="page" value="profilo" scope="request"/>
+       <jsp:include page="header.jsp"/>
         <!--per mettere possword usare la post-->
         <div class="divBodyp">
             <form action="servlet.java" method="post">

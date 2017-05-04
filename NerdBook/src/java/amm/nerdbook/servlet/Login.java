@@ -7,8 +7,6 @@ package amm.nerdbook.servlet;
 
 
 import amm.nerdbook.classi.UtenteRegistrato;
-import amm.nerdbook.classi.Post;
-import amm.nerdbook.classi.PostFactory;
 import amm.nerdbook.classi.UtentiregistratiFactory;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -24,8 +22,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Laura
  */
-@WebServlet(name = "Bacheca", urlPatterns = {"/Bacheca"})
-public class Bacheca extends HttpServlet {
+public class Login extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,50 +36,51 @@ public class Bacheca extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        HttpSession sessione = request.getSession(false);
         
-        if(sessione!=null && sessione.getAttribute("loggato")!=null && sessione.getAttribute("loggato").equals(true)){
-       
-            String parUtente = request.getParameter("utente");
-            int idUtente;
-            if(parUtente != null){
-                idUtente = Integer.parseInt(parUtente);
-            } else {
-                idUtente = (Integer)sessione.getAttribute("idUtenteLoggato");
-
-            }
-
-            UtenteRegistrato u = UtentiregistratiFactory.getInstance().getUtentiregistratiById(idUtente);
-            if(u != null){
-                request.setAttribute("utente", u);
-                
-                List<Post> listaPost = PostFactory.getInstance().getPostList(u);
-                request.setAttribute("listaPost", listaPost);
-
-                List<UtenteRegistrato> listaUtenti = UtentiregistratiFactory.getInstance().getListaUtenti();
-                request.setAttribute("listaUtenti",listaUtenti);
-                
-                request.getRequestDispatcher("M3/bacheca.jsp").forward(request, response);
-            } else {
-                response.setStatus(HttpServletResponse.SC_NOT_FOUND);
-            }
+        HttpSession sessione = request.getSession();
+        
+        // logout
+        if(request.getParameter("logout")!=null){
+            sessione.invalidate();
+            request.getRequestDispatcher("M3/login.jsp").forward(request, response);
+            return;
         }
-        else{
-            try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Bacheca</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Bacheca at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-            }
+        
+        // sessione attiva 
+        if (sessione.getAttribute("loggato") != null && sessione.getAttribute("loggato").equals(true)) {
+            request.getRequestDispatcher("Bacheca").forward(request, response);
+            return;
         }
+        else {
+            // sessione non attiva
+            String username = request.getParameter("username");
+            String password = request.getParameter("password");
+        
+            if (username != null && password != null){
+                // faccio il login
+                int idUtenteLoggato = UtentiregistratiFactory.getInstance().login(username, password);
+                //se l'utente è valido...
+                if(idUtenteLoggato!=-1){
+                    sessione.setAttribute("utenteLoggato", UtentiregistratiFactory.getInstance().getUtentiregistratiById(idUtenteLoggato));
+                    sessione.setAttribute("idUtenteLoggato", idUtenteLoggato);
+                    sessione.setAttribute("loggato", true);
+                    return;
+                } else { 
+                    
+                    //dati Sbagliati
+                    request.setAttribute("datiSbagliati", true);
+                    request.getRequestDispatcher("M3/login.jsp").forward(request, response);
+                    return;
+                }  
+             }
+        }
+ 
+        request.getRequestDispatcher("M3/login.jsp").forward(request, response);
     }
- // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    
+    
+
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -122,5 +120,3 @@ public class Bacheca extends HttpServlet {
     }// </editor-fold>
 
 }
-
-

@@ -140,9 +140,10 @@ public class UtenteRegistrato {
     public void setFrase(String frase) {
         this.frase = frase;
     }
-
     
-    
+    public boolean confermaPassword(String password){
+        return this.password.equals(password);
+    }
     
     @Override
     public boolean equals(Object altroUtente) {

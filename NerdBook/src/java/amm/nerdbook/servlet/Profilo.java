@@ -7,8 +7,6 @@ package amm.nerdbook.servlet;
 
 
 import amm.nerdbook.classi.UtenteRegistrato;
-import amm.nerdbook.classi.Post;
-import amm.nerdbook.classi.PostFactory;
 import amm.nerdbook.classi.UtentiregistratiFactory;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -20,12 +18,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+
 /**
  *
  * @author Laura
  */
-@WebServlet(name = "Bacheca", urlPatterns = {"/Bacheca"})
-public class Bacheca extends HttpServlet {
+public class Profilo extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,33 +37,20 @@ public class Bacheca extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        
         HttpSession sessione = request.getSession(false);
         
-        if(sessione!=null && sessione.getAttribute("loggato")!=null && sessione.getAttribute("loggato").equals(true)){
-       
-            String parUtente = request.getParameter("utente");
-            int idUtente;
-            if(parUtente != null){
-                idUtente = Integer.parseInt(parUtente);
-            } else {
-                idUtente = (Integer)sessione.getAttribute("idUtenteLoggato");
-
-            }
-
-            UtenteRegistrato u = UtentiregistratiFactory.getInstance().getUtentiregistratiById(idUtente);
-            if(u != null){
-                request.setAttribute("utente", u);
-                
-                List<Post> listaPost = PostFactory.getInstance().getPostList(u);
-                request.setAttribute("listaPost", listaPost);
-
-                List<UtenteRegistrato> listaUtenti = UtentiregistratiFactory.getInstance().getListaUtenti();
-                request.setAttribute("listaUtenti",listaUtenti);
-                
-                request.getRequestDispatcher("M3/bacheca.jsp").forward(request, response);
-            } else {
-                response.setStatus(HttpServletResponse.SC_NOT_FOUND);
-            }
+        
+        
+        if(sessione!=null && sessione.getAttribute("loggato")!=null && sessione.getAttribute("loggedIn").equals(true)){
+            int idUtenteLoggato = (Integer)sessione.getAttribute("idUtenteLoggato");
+            UtenteRegistrato u = UtentiregistratiFactory.getInstance().getUtentiregistratiById(idUtenteLoggato);
+            request.setAttribute("utente",u);
+            
+            List<UtenteRegistrato> listaUtenti = UtentiregistratiFactory.getInstance().getListaUtenti();
+            request.setAttribute("listaUtenti",listaUtenti);
+            
+            request.getRequestDispatcher("M3/profilo.jsp").forward(request, response);
         }
         else{
             try (PrintWriter out = response.getWriter()) {
@@ -73,16 +58,17 @@ public class Bacheca extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Bacheca</title>");            
+            out.println("<title>Servlet Profilo</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Bacheca at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet Profilo at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
-            }
+        }
         }
     }
- // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -122,5 +108,3 @@ public class Bacheca extends HttpServlet {
     }// </editor-fold>
 
 }
-
-
