@@ -30,11 +30,11 @@
                             <div class="post">
                                 <p>${post.contenutoTesto}</p>
                                 <c:if test="${post.postType == 'IMAGE'}">
-                                    <img alt="Post con foto" src="${post.contenutoImm}">
+                                    <img alt="Post con foto" src="${post.url}">
                                     <p>${post.contenutoTesto}</p>
                                 </c:if>
                                 <c:if test="${post.postType == 'LINK'}">
-                                    <a href="${post.contenutoLink}" target="_blank">${post.contenutoLink}</a> 
+                                    <a href="${post.contenutoLink}" target="_blank">${post.url}</a> 
                                     <p>${post.contenutoTesto}</p>
                                 </c:if>
                             </div>

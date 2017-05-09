@@ -30,27 +30,25 @@ public class PostFactory {
 
         //Creazione Post
         Post post1 = new Post();
-        post1.setContenutoTesto("Ciao, miei schiavi. Datemi cibo! Adesso! Miaomiaomiaomiaomiao!");
-        post1.setContenutoImm("");
-        post1.setContenutoLink("");
+        post1.setContenutoTesto("");
+        post1.seturl("");
         post1.setId(0);
         post1.setUser(utentiregistratiFactory.getUtentiregistratiById(0));
+        post1.setUrlType(Post.Type.NULL);
 
         Post post2 = new Post();
         post2.setContenutoTesto("");
-        post2.setContenutoImm("");
-        post2.setContenutoLink("");
+        post2.seturl("");
         post2.setId(1);
         post2.setUser(utentiregistratiFactory.getUtentiregistratiById(0));
-        post2.setPostType(Post.Type.IMAGE);
+        post2.setUrlType(Post.Type.IMAGE);
 
         Post post3 = new Post();
         post2.setContenutoTesto("");
-        post2.setContenutoImm("");
-        post2.setContenutoLink("");
+        post2.seturl("");
         post3.setId(2);
         post3.setUser(utentiregistratiFactory.getUtentiregistratiById(0));
-        post3.setPostType(Post.Type.IMAGE);
+        post3.setUrlType(Post.Type.LINK);
 
         
         listaPost.add(post1);

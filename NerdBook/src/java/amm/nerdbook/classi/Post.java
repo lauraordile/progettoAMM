@@ -12,23 +12,21 @@ package amm.nerdbook.classi;
 public class Post {
     
     public enum Type {
-        TEXT, IMAGE, LINK
+       IMAGE, LINK, NULL
     };
     
     protected int id;
     protected UtenteRegistrato user;
     private String contenutoTesto;
-    private String contenutoImm;
-    private String contenutoLink;
-    private Type postType;
+    private String url;
+    private Type urlType;
 
     public Post() {
         id = 0;
         user = null;
         contenutoTesto = "";
-        contenutoImm = "";
-        contenutoLink = "";
-        postType = Type.TEXT;
+        url = "";
+        urlType = Type.NULL;
     }
 
     /**
@@ -62,15 +60,15 @@ public class Post {
     /**
      * @return the postType
      */
-    public Type getPostType() {
-        return postType;
+    public Type getUrlType() {
+        return urlType;
     }
 
     /**
      * @param postType the postType to set
      */
-    public void setPostType(Type postType) {
-        this.postType = postType;
+    public void setUrlType(Type urlType) {
+        this.urlType = urlType;
     }
 
     /**
@@ -87,31 +85,19 @@ public class Post {
         this.contenutoTesto = contenutoTesto;
     }
 
-    /**
-     * @return the contenutoImm
-     */
-    public String getContenutoImm() {
-        return contenutoImm;
-    }
-
-    /**
-     * @param contenutoImm the contenutoImm to set
-     */
-    public void setContenutoImm(String contenutoImm) {
-        this.contenutoImm = contenutoImm;
-    }
+    
 
     /**
      * @return the contenutoLink
      */
-    public String getContenutoLink() {
-        return contenutoLink;
+    public String geturl() {
+        return url;
     }
 
     /**
-     * @param contenutoLink the contenutoLink to set
+     * @param url the contenutoLink to set
      */
-    public void setContenutoLink(String contenutoLink) {
-        this.contenutoLink = contenutoLink;
+    public void seturl(String url) {
+        this.url = url;
     }
 }

@@ -1,0 +1,41 @@
+Ogni utente può scrivere un post
+Ogni post deve essere scritto da un utente
+Ogni post deve avere un tipoUrl specifico
+Ogni tipoUrl può essere inserito in un Post
+Ogni gruppo può essere associato ad un UtenteperGruppo
+Ogni UtenteperGruppo deve appartenere ad un gruppo
+Ogni Utente può essere associato ad un UtenteperGruppo
+Ogni UtenteperGruppo deve essere un utente
+Ognigruppo deve avere un amministratore che deve essere un utente
+Ogni utente può essere amministratore di un gruppo
+
+Utente
+- id (PK)
+- nome
+- cognome
+- dataNascita
+- frasePresentazione
+- urlFoto
+- password
+- email
+
+Post
+- id (PK)
+- testo
+- url
+- tipo (FK -TipoUrl.id)
+- utente (FK -Utente.id)
+
+TipoUrl
+- id (PK)
+- nomeTipo
+
+Gruppo
+- id (PK)
+- nome
+- amministratore (FK -Utente.id)
+
+UtentePerGruppo
+- id (PK)
+- gruppo (FK -Gruppo.id)
+- utente (FK -Utente.id)
