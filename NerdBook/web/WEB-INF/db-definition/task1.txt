@@ -36,6 +36,6 @@ Gruppo
 - amministratore (FK -Utente.id)
 
 UtentePerGruppo
-- id (PK)
-- gruppo (FK -Gruppo.id)
-- utente (FK -Utente.id)
+(PK)
+    - gruppo (FK -Gruppo.id)
+    - utente (FK -Utente.id)

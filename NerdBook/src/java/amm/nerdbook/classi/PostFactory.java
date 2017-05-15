@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * @author Laura
  */
 public class PostFactory {
-
+     private String connectionString;
     //Pattern Design Singleton
     private static PostFactory singleton;
 
@@ -78,4 +78,11 @@ public class PostFactory {
         return listaPost;
     }
 
+         public void setConnectionString(String s){
+	this.connectionString = s;
+}
+
+      public String getConnectionString(){
+	return this.connectionString;
+      }
 }

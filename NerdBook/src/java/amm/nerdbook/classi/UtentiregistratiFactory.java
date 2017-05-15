@@ -11,6 +11,7 @@ import java.util.List;
  * @author Laura
  */
 public class UtentiregistratiFactory {
+    private String connectionString;
       //Pattern Design Singleton
     private static UtentiregistratiFactory singleton;
 
@@ -105,5 +106,13 @@ public class UtentiregistratiFactory {
         }
         return -1;
     }
+     
+      public void setConnectionString(String s){
+	this.connectionString = s;
+}
+
+      public String getConnectionString(){
+	return this.connectionString;
+      }
 
 }

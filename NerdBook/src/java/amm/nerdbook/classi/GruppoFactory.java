@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * @author Laura
  */
 public class GruppoFactory {
-    
+    private String connectionString;
     //Pattern Design Singleton
     private static GruppoFactory singleton;
 
@@ -73,4 +73,11 @@ public class GruppoFactory {
         return null;
     } 
     
+      public void setConnectionString(String s){
+	this.connectionString = s;
+}
+
+      public String getConnectionString(){
+	return this.connectionString;
+      }
 }
