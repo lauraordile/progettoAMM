@@ -189,6 +189,37 @@ public class PostFactory {
             
             // Esecuzione query
             stmt.executeUpdate();
+            stmt.close();
+            conn.close();
+        }
+            
+            
+        catch(SQLException e){
+        e.printStackTrace();
+        }
+         
+    }
+    
+    public void deletePost(Post post){
+        try {
+            // path, username, password
+            Connection conn = DriverManager.getConnection(connectionString,"ammdb","l.ordile");
+            
+            String query = 
+                      "delete *"
+                    + "from post"
+                    + "where id = ?";
+            
+            // Prepared Statement
+            PreparedStatement stmt = conn.prepareStatement(query);
+            
+            // Si associano i valori
+            stmt.setInt(1, post.getId());
+
+            // Esecuzione query
+            stmt.executeUpdate();
+            stmt.close();
+            conn.close();
         }
         catch(SQLException e){
         e.printStackTrace();
