@@ -10,7 +10,7 @@ Ognigruppo deve avere un amministratore che deve essere un utente
 Ogni utente può essere amministratore di un gruppo
 
 Utente
-- id (PK)
+- id(PK)
 - nome
 - cognome
 - dataNascita
@@ -34,6 +34,7 @@ Gruppo
 - id (PK)
 - nome
 - amministratore (FK -Utente.id)
+- descrizione
 
 UtentePerGruppo
 (PK)

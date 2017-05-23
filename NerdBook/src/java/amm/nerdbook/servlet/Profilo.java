@@ -10,7 +10,10 @@ import amm.nerdbook.classi.UtenteRegistrato;
 import amm.nerdbook.classi.UtentiregistratiFactory;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,6 +26,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author Laura
  */
+
+
 public class Profilo extends HttpServlet {
 
     /**
@@ -35,7 +40,7 @@ public class Profilo extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, ParseException {
         response.setContentType("text/html;charset=UTF-8");
         
         HttpSession sessione = request.getSession(false);
@@ -50,7 +55,7 @@ public class Profilo extends HttpServlet {
             List<UtenteRegistrato> listaUtenti = UtentiregistratiFactory.getInstance().getListaUtenti();
             request.setAttribute("listaUtenti",listaUtenti);
             
-            request.getRequestDispatcher("M3/profilo.jsp").forward(request, response);
+            request.getRequestDispatcher("M4/profilo.jsp").forward(request, response);
         }
         else{
             try (PrintWriter out = response.getWriter()) {
@@ -80,7 +85,12 @@ public class Profilo extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+       
+        try {
+            processRequest(request, response);
+        } catch (ParseException ex) {
+            Logger.getLogger(Profilo.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -94,7 +104,12 @@ public class Profilo extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+
+            processRequest(request, response);
+        } catch (ParseException ex) {
+            Logger.getLogger(Profilo.class.getName()).log(Level.SEVERE, null, ex);
+        } 
     }
 
     /**

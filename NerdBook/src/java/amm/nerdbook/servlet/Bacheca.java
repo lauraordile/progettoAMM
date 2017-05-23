@@ -13,6 +13,7 @@ import amm.nerdbook.classi.UtentiregistratiFactory;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import java.util.logging.Level;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,7 +25,6 @@ import javax.servlet.http.HttpSession;
  *
  * @author Laura
  */
-@WebServlet(name = "Bacheca", urlPatterns = {"/Bacheca"})
 public class Bacheca extends HttpServlet {
 
     /**
@@ -42,13 +42,16 @@ public class Bacheca extends HttpServlet {
         HttpSession sessione = request.getSession(false);
         
         if(sessione!=null && sessione.getAttribute("loggato")!=null && sessione.getAttribute("loggato").equals(true)){
-       
+            
+
             String parUtente = request.getParameter("utente");
             int idUtente;
+            
             if(parUtente != null){
                 idUtente = Integer.parseInt(parUtente);
             } else {
-                idUtente = (Integer)sessione.getAttribute("idUtenteLoggato");
+                Integer idUtenteLoggato = (Integer)sessione.getAttribute("idUtenteLoggato");
+                idUtente=idUtenteLoggato;
 
             }
 
@@ -62,7 +65,7 @@ public class Bacheca extends HttpServlet {
                 List<UtenteRegistrato> listaUtenti = UtentiregistratiFactory.getInstance().getListaUtenti();
                 request.setAttribute("listaUtenti",listaUtenti);
                 
-                request.getRequestDispatcher("M3/bacheca.jsp").forward(request, response);
+                request.getRequestDispatcher("M4/bacheca.jsp").forward(request, response);
             } else {
                 response.setStatus(HttpServletResponse.SC_NOT_FOUND);
             }
@@ -94,7 +97,7 @@ public class Bacheca extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+            processRequest(request, response);
     }
 
     /**
@@ -108,7 +111,8 @@ public class Bacheca extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+            processRequest(request, response);
+        
     }
 
     /**

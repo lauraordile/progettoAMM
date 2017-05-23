@@ -16,14 +16,16 @@ public class Gruppo {
 
     
     private int id;
-    private List<UtenteRegistrato>  utentiGruppo;
+    private List<UtenteRegistrato>  utentiGruppo;//da togliere???
+    private UtenteRegistrato amministratore;
     private String nomeGruppo;
     private String descrizione;
     
     public Gruppo(){
         id=0;
         nomeGruppo="";
-        utentiGruppo = new ArrayList<>();
+        
+        //utentiGruppo = new ArrayList<>();
     }
 
     /**
@@ -80,5 +82,19 @@ public class Gruppo {
      */
     public void setDescrizione(String descrizione) {
         this.descrizione = descrizione;
+    }
+
+    /**
+     * @return the amministratore
+     */
+    public UtenteRegistrato getAmministratore() {
+        return amministratore;
+    }
+
+    /**
+     * @param amministratore the amministratore to set
+     */
+    public void setAmministratore(UtenteRegistrato amministratore) {
+        this.amministratore = amministratore;
     }
 }

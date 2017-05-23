@@ -12,7 +12,7 @@ package amm.nerdbook.classi;
 public class Post {
     
     public enum Type {
-       IMAGE, LINK, NULL
+       NULL, IMAGE, LINK
     };
     
     protected int id;
@@ -65,7 +65,7 @@ public class Post {
     }
 
     /**
-     * @param postType the postType to set
+     * @param urlType the postType to set
      */
     public void setUrlType(Type urlType) {
         this.urlType = urlType;

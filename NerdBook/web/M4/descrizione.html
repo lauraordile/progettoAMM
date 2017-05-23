@@ -1,12 +1,4 @@
-<%-- 
-    Document   : descrizione
-    Created on : 4-mag-2017, 22.52.21
-    Author     : Laura
---%>
-<!DOCTYPE html>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<!DOCTYPE html> <!-- tipo di documento che stiamo invalidando-->
 <html>
     <head>
         <title>Nerdbook: trova il tuoi nerdfriends</title>
@@ -16,12 +8,27 @@
         <meta name="keywords" content="Social network ,Nerdbook, amicizie e tanto altro">
         <link rel="stylesheet" type="text/css" href="style.css" media="screen">
     </head>
-    <body>
-        <c:set var="page" value="descrizione" scope="request"/>
-        <jsp:include page="header.jsp"/>
-        <jsp:include page="nav.jsp"/>
+    <body><!--tutto ciò che vogliamo visualizzare nello schermo-->
+        <!--definisco un contenitore che si chiamerà header-->
+        <div class="header">
+           <!--al cui interno c'è un altro contenitore title-->
+            <div id="title">
+                <h1>Nerdbook</h1>
+            </div>
         
-      <div class="divBody"> <!-- contiene tutto il contenuto della pagina-->
+        <nav>
+            <ol>
+                <li><a href="profilo.html" >Profilo</a></li>
+                <li><a href ="bacheca.html">Bacheca</a></li>
+                <li><a href="login.html" >Login</a></li> <!--* crea una nuova tab-->                
+                <li class="activ"><a href="descrizione.html" >Descrizione</a></li> <!--creiamo il link con l'indirizzo relativo, blank apre una la stessa pagina con uun tag vuoto-->
+
+            </ol>
+              
+        </nav>
+        </div>
+        
+        <div class="divBody"> <!-- contiene tutto il contenuto della pagina-->
              <h2> Descrizione social network:</h2> 
              <div id ="rivolto">
                   <h3> A chi è rivolto Nerdbook:</h3> 
@@ -43,3 +50,4 @@
         </div>
     </body>
 </html>
+        

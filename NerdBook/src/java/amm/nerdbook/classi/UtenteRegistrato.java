@@ -151,5 +151,6 @@ public class UtenteRegistrato {
             if (this.getId() == ((UtenteRegistrato)altroUtente).getId()) return true;
         return false;
     }
+    
 }
 

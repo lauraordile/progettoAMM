@@ -10,10 +10,16 @@
 <!DOCTYPE html>
 
 <div class="header">
-    <div id="title">
-        <h1>Nerdbook</h1>
-    </div>
+    <c:if test="${page=='login'}">
+         <div id="titlel">
+            <img alt="Foto Profilo" src="M4/immagini/NerdBook.png">
+            <h1>Nerdbook</h1>
+         </div>
+    </c:if>
     <c:if test="${page!='login'}">
+        <div id="title">
+            <h1>Nerdbook</h1>
+        </div>
         <jsp:include page="nav.jsp"/>
     </c:if>       
     <c:if test ="${page=='bacheca'|| page=='profilo'}">

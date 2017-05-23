@@ -21,6 +21,7 @@
         <jsp:include page="header.jsp"/>
         <jsp:include page="nav.jsp"/>
         
+        
       <div class="divBody"> <!-- contiene tutto il contenuto della pagina-->
              <h2> Descrizione social network:</h2> 
              <div id ="rivolto">

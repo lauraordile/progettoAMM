@@ -4,6 +4,11 @@
  * and open the template in the editor.
  */
 package amm.nerdbook.classi;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 /**
  *
@@ -23,9 +28,9 @@ public class GruppoFactory {
 
     private ArrayList<Gruppo> listaGruppo = new ArrayList<Gruppo>();
 
-    private GruppoFactory() {
+    private GruppoFactory()  {
         
-        UtentiregistratiFactory utentiregistratiFactory = UtentiregistratiFactory.getInstance();
+        /*UtentiregistratiFactory utentiregistratiFactory = UtentiregistratiFactory.getInstance();
 
         //Creazione Gruppo
         Gruppo gruppo1 = new Gruppo();
@@ -52,16 +57,46 @@ public class GruppoFactory {
         listaGruppo.add(gruppo1);
         listaGruppo.add(gruppo2);
       
-    }
+    */}
+     public Gruppo getGruppoById(int id) {
+         UtentiregistratiFactory utenteFactory =UtentiregistratiFactory.getInstance();
+        //GruppoFactory gruppoFactory =GruppoFactory.getInstance();
+        try {
+            Connection conn= DriverManager.getConnection(connectionString,"ammdb","l.ordile");
+            String quesry =
+                    " select* from gruppo "
+                    +" join utentepergruppo on utentepergruppo.gruppo = gruppo.id"
+                    +"where id=?";
+            PreparedStatement stmt= conn.prepareStatement(quesry);
+            stmt.setInt(1, id);
+            ResultSet res=stmt.executeQuery();
+            if(res.next()){
+                Gruppo current= new Gruppo();
+                current.setId(res.getInt("id"));
+                current.setNomeGruppo(res.getString("nome"));
+                current.setDescrizione(res.getString("descrizione"));
+                UtenteRegistrato amministratore = utenteFactory.getUtentiregistratiById(res.getInt("amministratore"));
+                current.setAmministratore(amministratore);
 
-    public Gruppo getGruppoById(int id) {
-        for (Gruppo gruppo : this.listaGruppo) {
-            if (gruppo.getId() == id) {
-                return gruppo;
+                stmt.close();
+                conn.close();
+                return current;
             }
+            stmt.close();
+            conn.close();
         }
+        catch(SQLException e){
+            e.printStackTrace();  
+        }
+        /*for (Post post : this.listaPost) {
+            if (post.getId() == id) {
+                return post;
+            }
+        }*/
         return null;
     }
+
+   
 
       public Gruppo getUtenteByName(int idGruppo)
     {

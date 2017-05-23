@@ -12,6 +12,7 @@ import amm.nerdbook.classi.UtenteRegistrato;
 import amm.nerdbook.classi.UtentiregistratiFactory;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,7 +28,7 @@ import javax.servlet.http.HttpSession;
  * @author Laura
  *
  */
-@WebServlet( name="Login",urlPatterns={"M3/login.html"} ,loadOnStartup = 0)
+@WebServlet(loadOnStartup = 0)
 public class Login extends HttpServlet {
     private static final String JDBC_DRIVER ="org.apache.derby.jdbc.EmbeddedDriver";
     private static final String DB_CLEAN_PATH = "../../web/WEB-INF/db/ammdb";
@@ -45,7 +46,7 @@ public class Login extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         
         HttpSession sessione = request.getSession();
@@ -53,7 +54,7 @@ public class Login extends HttpServlet {
         // logout
         if(request.getParameter("logout")!=null){
             sessione.invalidate();
-            request.getRequestDispatcher("M3/login.jsp").forward(request, response);
+            request.getRequestDispatcher("M4/login.jsp").forward(request, response);
             return;
         }
         
@@ -80,13 +81,13 @@ public class Login extends HttpServlet {
                     
                     //dati Sbagliati
                     request.setAttribute("datiSbagliati", true);
-                    request.getRequestDispatcher("M3/login.jsp").forward(request, response);
+                    request.getRequestDispatcher("M4/login.jsp").forward(request, response);
                     return;
                 }  
              }
         }
  
-        request.getRequestDispatcher("M3/login.jsp").forward(request, response);
+        request.getRequestDispatcher("M4/login.jsp").forward(request, response);
     }
     
     
@@ -103,7 +104,11 @@ public class Login extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -117,7 +122,11 @@ public class Login extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
