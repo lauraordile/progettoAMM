@@ -28,9 +28,11 @@
            
                     
             <c:when test="${page=='descrizione'}"> 
-                <li><a href="descrizione.jsp">Descrizione</a></li>
-                <li class="activ"><a href="login.jsp" >Login</a></li>
+                <li class="activ"><a href="descrizione.jsp">Descrizione</a></li>
+                <li ><a href="login.jsp" >Login</a></li>
             </c:when>
+                
+                
         </c:choose>
     </ol>
             

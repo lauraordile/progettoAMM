@@ -19,6 +19,7 @@
     <body>
        <c:set var="page" value="bacheca" scope="request"/>
        <jsp:include page="header.jsp"/>
+       <jsp:include page ="nuovopost.jsp"/>
                <div id="posts">
                    <c:forEach var="post" items="${listaPost}">
                        <div class="singp">
@@ -28,12 +29,12 @@
                             <h2>${post.user.nome} ${post.user.cognome}</h2>
                             <div class="post">
                                 <p>${post.contenutoTesto}</p>
-                                <c:if test="${post.postType == 'IMAGE'}">
+                                <c:if test="${post.urlType == 'IMAGE'}">
                                     <img alt="Post con foto" src="${post.url}">
                                     <p>${post.contenutoTesto}</p>
                                 </c:if>
-                                <c:if test="${post.postType == 'LINK'}">
-                                    <a href="${post.contenutoLink}" target="_blank">${post.url}</a> 
+                                <c:if test="${post.urlType == 'LINK'}">
+                                    <a href="${post.url}" target="_blank">${post.url}</a> 
                                     <p>${post.contenutoTesto}</p>
                                 </c:if>
                             </div>

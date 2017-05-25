@@ -667,7 +667,10 @@
         margin-left: 240px;
     }
    
-    
+    #formNewPost{
+        margin-left: 290px;
+        padding-top: 80px;
+    }
 }
 /*1024px 480px*/
 @media only screen and (max-width: 1024px){
