@@ -17,7 +17,7 @@ public class Gruppo {
     
     private int id;
     private List<UtenteRegistrato>  utentiGruppo;//da togliere???
-    private UtenteRegistrato amministratore;
+    private int amministratore;
     private String nomeGruppo;
     private String descrizione;
     
@@ -87,14 +87,14 @@ public class Gruppo {
     /**
      * @return the amministratore
      */
-    public UtenteRegistrato getAmministratore() {
+    public int getAmministratore() {
         return amministratore;
     }
 
     /**
      * @param amministratore the amministratore to set
      */
-    public void setAmministratore(UtenteRegistrato amministratore) {
+    public void setAmministratore(int amministratore) {
         this.amministratore = amministratore;
     }
 }

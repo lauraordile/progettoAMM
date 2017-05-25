@@ -52,6 +52,13 @@ CREATE TABLE Post (
    FOREIGN KEY (utente) REFERENCES Utente(id)
 );
 
+CREATE TABLE Amicizie (
+    utente1 INTEGER,
+   FOREIGN KEY (utente1) REFERENCES Utente(id),
+   utente2 INTEGER,
+   FOREIGN KEY (utente2) REFERENCES Utente(id),
+   PRIMARY KEY (utente1, utente2)
+);
 INSERT INTO Utente (id, nome,cognome , dataNascita, FrasePresentazione,urlFoto, password, email)
 VALUES (
     default,
@@ -143,3 +150,12 @@ VALUES (
     1),(
     2,
     4);
+INSERT INTO Amicizie (utente1, utente2)
+VALUES (
+    1,
+    2),(
+    2,
+    1),(
+    1,3),(
+    3,
+    2);

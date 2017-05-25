@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 /**
  *
  * @author Laura
@@ -76,7 +77,7 @@ public class GruppoFactory {
                 current.setNomeGruppo(res.getString("nome"));
                 current.setDescrizione(res.getString("descrizione"));
                 UtenteRegistrato amministratore = utenteFactory.getUtentiregistratiById(res.getInt("amministratore"));
-                current.setAmministratore(amministratore);
+                current.setAmministratore(res.getInt("amministratore"));
 
                 stmt.close();
                 conn.close();
@@ -115,4 +116,37 @@ public class GruppoFactory {
       public String getConnectionString(){
 	return this.connectionString;
       }
+      public List<Gruppo> getGroupList(){
+        List<Gruppo> listaGruppi = new ArrayList<>();
+        
+        try {
+            Connection connessione = DriverManager.getConnection(connectionString,"ammdb","l.ordile");
+            
+            String query = "select * from gruppo";
+            
+            PreparedStatement frase = connessione.prepareStatement(query);
+            
+            ResultSet res = frase.executeQuery();
+
+            while (res.next()) {
+                Gruppo gruppo = new Gruppo();
+                
+                gruppo.setId(res.getInt("Id"));
+                gruppo.setNomeGruppo(res.getString("nome"));
+                gruppo.setDescrizione(res.getString("descrizione"));
+                gruppo.setAmministratore(res.getInt("amministratore"));
+
+                listaGruppi.add(gruppo);
+            }
+            
+
+            frase.close();
+            connessione.close();
+        } catch (SQLException e) {
+            System.out.println("Errore");
+            e.printStackTrace();
+        }
+        
+        return listaGruppi;
+}
 }

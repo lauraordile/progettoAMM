@@ -226,7 +226,35 @@ public class PostFactory {
         }
          
     }
-    private int postTypeFromEnum(Post.Type type){
+    
+    public void deleteAllPost(UtenteRegistrato u){
+        try {
+            // path, username, password
+            Connection conn = DriverManager.getConnection(connectionString,"ammdb","l.ordile");
+            
+            String query = 
+                      "delete *"
+                    + "from post"
+                    + "where utente = ?";
+            // Prepared Statement
+            PreparedStatement stmt = conn.prepareStatement(query);
+            
+            // Si associano i valori
+            stmt.setInt(1, u.getId());
+
+            // Esecuzione query
+            stmt.executeUpdate();
+            stmt.close();
+            conn.close();
+        }
+        catch(SQLException e){
+        e.printStackTrace();
+        }
+         
+    }
+    
+    
+    public int postTypeFromEnum(Post.Type type){
         //È realizzabile in modo più robusto rispetto all'hardcoding degli indici
         if(type == Post.Type.NULL)
                 return 1;

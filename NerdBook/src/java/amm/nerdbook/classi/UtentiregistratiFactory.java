@@ -15,6 +15,8 @@ import java.util.List;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author Laura
@@ -174,15 +176,152 @@ public class UtentiregistratiFactory {
     }
     
     public List getListaUtenti() {
-        return listaUtentiregistrati;
-    }
-   
-     public int login(String nome ,String password) {
-        for (UtenteRegistrato user : this.listaUtentiregistrati) {
-            if (user.getNome().equals(nome) && user.confermaPassword(password)) {
-                return user.getId();
+        //List<UtenteRegistrato> listaUtentiregistrati = new ArrayList<UtenteRegistrato>();
+         
+        try{
+            Connection conn = DriverManager.getConnection(connectionString, "ammdb","l.ordile");
+           
+            String query = 
+                      "select * from utente";
+            
+            // Prepared Statement
+            PreparedStatement stmt = conn.prepareStatement(query);
+            
+            // Esecuzione query
+            ResultSet res = stmt.executeQuery();
+
+           // ciclo sulle righe restituite
+            while (res.next()) {
+                UtenteRegistrato current = new UtenteRegistrato();
+                current.setId(res.getInt("id"));
+                current.setNome(res.getString("nome"));
+                current.setCognome(res.getString("cognome"));
+                current.setPassword(res.getString("password"));
+                current.setPassword(res.getString("password"));
+                current.setEmail(res.getString("email"));
+                current.setUrlProfilo(res.getString("urlFoto"));
+                //current.setDataNascita(res.getDate("dataNascita"));
+                
+                listaUtentiregistrati.add(current);
             }
+
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
+        }
+        
+        return listaUtentiregistrati;
+     }
+    
+   
+     
+     public int login(String nome , String password) {
+        try {
+            // path, username, password
+            Connection conn = DriverManager.getConnection(connectionString,"ammdb","l.ordile");
+            
+            String query = 
+                      "SELECT id FROM Utente "
+                    + "WHERE nome = ? AND password = ?";
+            
+            // Prepared Statement
+            PreparedStatement stmt = conn.prepareStatement(query);
+            
+            // Si associano i valori
+            stmt.setString(1, nome);
+            stmt.setString(2, password);
+            
+            // Esecuzione query
+            ResultSet res = stmt.executeQuery();
+            int loggedUser;
+                
+            // ciclo sulle righe restituite
+            if (res.next()) {
+                loggedUser = res.getInt("id");
+                
+                stmt.close();
+                conn.close();
+                return loggedUser;
+            }
+
+            stmt.close();
+            conn.close();
+ } catch (SQLException e) {
+            e.printStackTrace();
         }
         return -1;
     }
+    public List getFriendList(int id) {
+        
+        try {
+            // path, username, password
+            Connection conn = DriverManager.getConnection(connectionString,"ammdb","l.ordile");
+            List<UtenteRegistrato> amici = new ArrayList<>();
+            String query = 
+                    "SELECT * FROM Utente " +
+                    "JOIN Amicizie ON Utente.id = Amicizie.Utente1 " +
+                    "WHERE Amicizie.Utente2 = ? " +
+                    "UNION " +
+                    "SELECT * FROM Utente " +
+                    "JOIN Amicizie ON Utente.id = Amicizie.Utente2 " +
+                    "WHERE Amicizie.Utente1 = ?";
+            
+            
+            // Prepared Statement
+            PreparedStatement stmt = conn.prepareStatement(query);
+            // Si associano i valori
+            stmt.setInt(1, id);
+            stmt.setInt(2, id);
+            
+            // Esecuzione query
+            ResultSet res;
+            UtenteRegistrato current;
+            res = stmt.executeQuery();
+            
+            // ciclo sulle righe restituite
+            while (res.next()) {
+                current = new UtenteRegistrato();
+                current.setId(res.getInt("id"));
+                current.setNome(res.getString("nome"));
+                current.setCognome(res.getString("cognome"));   
+                current.setDataNascita(res.getString("dataNascita"));
+                current.setFrase(res.getString("frasepresentazione"));
+                current.setUrlProfilo(res.getString("urlFoto"));
+                current.setPassword(res.getString("password"));
+                current.setEmail(res.getString("email"));
+                amici.add(current);
+            }
+            
+            stmt.close();
+            conn.close();
+            return amici;
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+}
+        public void deleteUser(UtenteRegistrato user){
+       
+        try{
+            Connection connessione = DriverManager.getConnection(connectionString,"ammdb","l.ordile");
+            String query = "delete from utentepergruppo where utente = ? ";
+            PreparedStatement frase = connessione.prepareStatement(query);
+            frase.setInt(1, user.getId());
+            frase.executeUpdate();
+            
+            query = "delete from utenti where utenteId = ?";
+            frase = connessione.prepareStatement(query);
+            frase.setInt(1, user.getId());
+            frase.executeUpdate();
+            
+            frase.close();
+            connessione.close();
+        } 
+        catch (SQLException e) {
+            System.out.println("Errore SQL su eliminaListaPost");
+            e.printStackTrace();
+        }
+
+}
 }

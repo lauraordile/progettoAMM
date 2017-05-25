@@ -41,9 +41,9 @@ public class Bacheca extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession sessione = request.getSession(false);
         
-        if(sessione!=null && sessione.getAttribute("loggato")!=null && sessione.getAttribute("loggato").equals(true)){
+        if(sessione!=null && sessione.getAttribute("loggedIn")!=null && sessione.getAttribute("loggedIn").equals(true)){
             
-
+            
             String parUtente = request.getParameter("utente");
             int idUtente;
             
@@ -71,18 +71,7 @@ public class Bacheca extends HttpServlet {
             }
         }
         else{
-            try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Bacheca</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Bacheca at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-            }
+            request.getRequestDispatcher("Login").forward(request, response);
         }
     }
  // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
