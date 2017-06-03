@@ -177,7 +177,7 @@
         float: right;
         position: fixed;
         padding-left: 20px;
-        z-index: 2;
+        z-index: 3;
     }
     #log {
         margin-top: 14px;

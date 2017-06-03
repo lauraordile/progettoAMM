@@ -10,20 +10,16 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.sql.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 /**
  *
  * @author Laura
  */
 public class UtentiregistratiFactory {
-    //private String connectionString;
-      //Pattern Design Singleton
+  
     private static UtentiregistratiFactory singleton;
 
     public static UtentiregistratiFactory getInstance() {
@@ -41,7 +37,7 @@ public class UtentiregistratiFactory {
     public String getConnectionString(){
             return this.connectionString;
     }
-    private ArrayList<UtenteRegistrato> listaUtentiregistrati = new ArrayList<UtenteRegistrato>();
+    //private ArrayList<UtenteRegistrato> listaUtentiregistrati = new ArrayList<UtenteRegistrato>();
 
     private UtentiregistratiFactory() {
         //Creazione utenti
@@ -116,7 +112,10 @@ public class UtentiregistratiFactory {
                 current.setUrlProfilo(res.getString("urlFoto"));
                 current.setFrase(res.getString("frasePresentazione"));
                 
-                //current.setDataNascita(res.("datanascita"));
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+                String DateAsString = sdf.format("dataNascita");
+                current.setDataNascita(res.getDate(DateAsString));
                /*input*/
                /*String dataNascita = request.getParameter("data");
                 java.util.Date date = new SimpleDateFormat("yyyy-MM-dd").parse(dataNascita);
@@ -145,7 +144,7 @@ public class UtentiregistratiFactory {
            Connection conn= DriverManager.getConnection(connectionString,"ammdb","l.ordile");
             String quesry =
                     "select id from utente"
-                    +"where nome = ? and password = ?";
+                    +"where email = ? and password = ?";
            PreparedStatement stmt= conn.prepareStatement(quesry);
 
              stmt.setString(1, user);
@@ -161,22 +160,60 @@ public class UtentiregistratiFactory {
              }
              stmt.close();
              conn.close();
+             
        }
        catch(SQLException e){
             e.printStackTrace();
             
         }
-       return -1;/*
-        for (UtenteRegistrato utente : this.listaUtentiregistrati){
-            if(utente.getNome().equals(user)&& utente.getPassword().equals(password)){
-                return utente.getId();
+       return -1;
+       }
+    
+     public List getListaUtenti(String nome) {
+        List<UtenteRegistrato> listaUtentiregistrati = new ArrayList<UtenteRegistrato>();
+         
+        try{
+            Connection conn = DriverManager.getConnection(connectionString, "ammdb","l.ordile");
+           
+            String query = 
+                      "select * from utente where nome like?";
+            
+            // Prepared Statement
+            PreparedStatement stmt = conn.prepareStatement(query);
+            
+            stmt.setString(1,"%" + nome + "%");
+            // Esecuzione query
+            ResultSet res = stmt.executeQuery();
+
+           // ciclo sulle righe restituite
+            while (res.next()) {
+                UtenteRegistrato current = new UtenteRegistrato();
+                current.setId(res.getInt("id"));
+                current.setNome(res.getString("nome"));
+                current.setCognome(res.getString("cognome"));
+                current.setPassword(res.getString("password"));
+                current.setPassword(res.getString("password"));
+                current.setEmail(res.getString("email"));
+                current.setUrlProfilo(res.getString("urlFoto"));
+                //current.setDataNascita(res.getDate("dataNascita"));
+                
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                String DateAsString = sdf.format("dataNascita");
+                current.setDataNascita(res.getDate(DateAsString));
+                
+                listaUtentiregistrati.add(current);
             }
+
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
         }
-        return -1;*/
-    }
+        
+        return listaUtentiregistrati;
+     }
     
     public List getListaUtenti() {
-        //List<UtenteRegistrato> listaUtentiregistrati = new ArrayList<UtenteRegistrato>();
+        List<UtenteRegistrato> listaUtentiregistrati = new ArrayList<UtenteRegistrato>();
          
         try{
             Connection conn = DriverManager.getConnection(connectionString, "ammdb","l.ordile");
@@ -201,6 +238,10 @@ public class UtentiregistratiFactory {
                 current.setEmail(res.getString("email"));
                 current.setUrlProfilo(res.getString("urlFoto"));
                 //current.setDataNascita(res.getDate("dataNascita"));
+                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+                String DateAsString = sdf.format("dataNascita");
+                current.setDataNascita(res.getDate(DateAsString));
                 
                 listaUtentiregistrati.add(current);
             }
@@ -215,20 +256,20 @@ public class UtentiregistratiFactory {
     
    
      
-     public int login(String nome , String password) {
+    /* public int login(String email , String password) {
         try {
             // path, username, password
             Connection conn = DriverManager.getConnection(connectionString,"ammdb","l.ordile");
             
             String query = 
                       "SELECT id FROM Utente "
-                    + "WHERE nome = ? AND password = ?";
+                    + "WHERE email = ? AND password = ?";
             
             // Prepared Statement
             PreparedStatement stmt = conn.prepareStatement(query);
             
             // Si associano i valori
-            stmt.setString(1, nome);
+            stmt.setString(1, email);
             stmt.setString(2, password);
             
             // Esecuzione query
@@ -250,7 +291,7 @@ public class UtentiregistratiFactory {
             e.printStackTrace();
         }
         return -1;
-    }
+    }*/
     public List getFriendList(int id) {
         
         try {
@@ -284,7 +325,11 @@ public class UtentiregistratiFactory {
                 current.setId(res.getInt("id"));
                 current.setNome(res.getString("nome"));
                 current.setCognome(res.getString("cognome"));   
-                current.setDataNascita(res.getString("dataNascita"));
+                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+                String DateAsString = sdf.format("dataNascita");
+                current.setDataNascita(res.getDate(DateAsString));
+                //current.setDataNascita(res.getString("dataNascita"));
                 current.setFrase(res.getString("frasepresentazione"));
                 current.setUrlProfilo(res.getString("urlFoto"));
                 current.setPassword(res.getString("password"));

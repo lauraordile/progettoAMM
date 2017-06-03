@@ -5,6 +5,8 @@
  */
 package amm.nerdbook.classi;
 
+import java.sql.Date;
+
 /**
  *
  * @author Laura
@@ -13,17 +15,25 @@ public class UtenteRegistrato {
     private int id;
     private String nome; 
     private String cognome;
-    private String dataNascita;
+    private Date dataNascita;
     private String urlProfilo;
     private String frase;
     private String email;
     private String password;
-
+public boolean incompleto(){
+     
+        if(this.nome == null) return true;
+        if(this.cognome == null) return true;
+        if(this.frase == null) return true;
+        if(this.urlProfilo == null) return true;
+        
+        return false;
+    }
     public UtenteRegistrato(){
         id =0;
         nome="";
         cognome="";
-        dataNascita="";
+        dataNascita=null;
         urlProfilo="";
         frase="";
         password="";
@@ -102,14 +112,14 @@ public class UtenteRegistrato {
     /**
      * @return the dataNascita
      */
-    public String getDataNascita() {
+    public Date getDataNascita() {
         return dataNascita;
     }
 
     /**
      * @param dataNascita data di nascita
      */
-    public void setDataNascita(String dataNascita) {
+    public void setDataNascita(Date dataNascita) {
         this.dataNascita = dataNascita;
     }
 

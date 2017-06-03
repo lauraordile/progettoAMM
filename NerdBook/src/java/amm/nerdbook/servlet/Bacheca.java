@@ -6,16 +6,12 @@
 package amm.nerdbook.servlet;
 
 
-import amm.nerdbook.classi.UtenteRegistrato;
-import amm.nerdbook.classi.Post;
-import amm.nerdbook.classi.PostFactory;
-import amm.nerdbook.classi.UtentiregistratiFactory;
+import amm.nerdbook.classi.*;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
-import java.util.logging.Level;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -44,7 +40,77 @@ public class Bacheca extends HttpServlet {
         if(sessione!=null && sessione.getAttribute("loggedIn")!=null && sessione.getAttribute("loggedIn").equals(true)){
             
             
-            String parUtente = request.getParameter("utente");
+            
+            int loggedUserID = (Integer)sessione.getAttribute("loggedUserID");
+            UtenteRegistrato loggedUser = UtentiregistratiFactory.getInstance().getUtentiregistratiById(loggedUserID);
+            
+            /* leggo i parametri group e user, se presenti */
+            String userp = request.getParameter("user");
+            String paramGroup = request.getParameter("group");
+            int userID =-1;
+            int idGroup=-1;
+            
+            /* Se è presente il parametro group, leggo l'id del gruppo di cui voglio vedere i post */
+            if(paramGroup != null)
+                idGroup = Integer.parseInt(paramGroup);
+            // altrimenti
+            else{
+                /* se è presente invece il parametro user, leggo l'id dell'utente */
+                if(userp != null)
+                    userID = Integer.parseInt(userp);
+                // se nessuno dei due è presente, leggo la bacheca dell'utente loggato
+                else{                   
+                   // Integer loggedUserID = (Integer)sessione.getAttribute("loggedUserID");
+                    userID = loggedUserID;
+                }
+            }
+
+            /* carico i dati di utente/gruppo che voglio visualizzare (uno dei due sarà null) */
+            UtenteRegistrato user = UtentiregistratiFactory.getInstance().getUtentiregistratiById(userID);
+            Gruppo gruppo = GruppoFactory.getInstance().getGruppoById(idGroup);
+            
+            List<Post> posts;
+            if(gruppo != null ){ // se ho scelto un gruppo, ed è presente, carico i suoi dati e imposto la richiesta
+                posts = PostFactory.getInstance().getPostList(gruppo);
+                request.setAttribute("gruppo", gruppo);
+                request.setAttribute("tipoBacheca","group");
+                request.setAttribute("nomeDest",gruppo.getNomeGruppo());
+            }else{
+                if(user == null) // se non è stato scelto un gruppo, e l'eventuale utente cercato è inesistente, si carica l'utente loggato
+                    user = loggedUser;
+                posts = PostFactory.getInstance().getPostList(user);
+                request.setAttribute("user", user);
+                request.setAttribute("tipoBacheca","user");
+                request.setAttribute("nomeDest",user.getNome());
+            }
+
+            request.setAttribute("posts", posts);
+            List<UtenteRegistrato> amici = UtentiregistratiFactory.getInstance().getFriendList(loggedUserID);
+            request.setAttribute("friends", amici);
+            //List<Gruppo> gruppi = GruppoFactory.getInstance().getGroupListByUser(loggedUserID);
+            //request.setAttribute("groups", gruppi);
+            request.getRequestDispatcher("M5/bacheca.jsp").forward(request, response);
+        }
+        else{
+            try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Accesso Negato</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Errore: Accesso Negato</h1>");
+            out.println("</body>");
+            out.println("</html>");
+            }
+  }
+    }
+
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+
+            
+           /* String parUtente = request.getParameter("utente");
             int idUtente;
             
             if(parUtente != null){
@@ -72,8 +138,8 @@ public class Bacheca extends HttpServlet {
         }
         else{
             request.getRequestDispatcher("Login").forward(request, response);
-        }
-    }
+        }*/
+    
  // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

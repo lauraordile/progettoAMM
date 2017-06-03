@@ -5,15 +5,9 @@
  */
 package amm.nerdbook.servlet;
 
+import amm.nerdbook.classi.*;
 
-import amm.nerdbook.classi.GruppoFactory;
-import amm.nerdbook.classi.PostFactory;
-import amm.nerdbook.classi.UtenteRegistrato;
-import amm.nerdbook.classi.UtentiregistratiFactory;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.SQLException;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -45,8 +39,11 @@ public class Login extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
+   
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
         HttpSession sessione = request.getSession();
@@ -54,40 +51,52 @@ public class Login extends HttpServlet {
         // logout
         if(request.getParameter("logout")!=null){
             sessione.invalidate();
-            request.getRequestDispatcher("M4/login.jsp").forward(request, response);
+            request.getRequestDispatcher("M5/login.jsp").forward(request, response);
             return;
         }
         
         // sessione attiva 
-        if (sessione.getAttribute("loggato") != null && sessione.getAttribute("loggato").equals(true)) {
+        if (sessione.getAttribute("loggedIn") != null && sessione.getAttribute("loggedIn").equals(true)) {
             request.getRequestDispatcher("Bacheca").forward(request, response);
             return;
         }
         else {
             // sessione non attiva
-            String username = request.getParameter("username");
+            String username = request.getParameter("nome");
             String password = request.getParameter("password");
         
             if (username != null && password != null){
                 // faccio il login
-                int idUtenteLoggato = UtentiregistratiFactory.getInstance().login(username, password);
+                int idUtenteLoggato = UtentiregistratiFactory.getInstance().getIdByUserAndPassword(username, password);
                 //se l'utente è valido...
                 if(idUtenteLoggato!=-1){
-                    sessione.setAttribute("utenteLoggato", UtentiregistratiFactory.getInstance().getUtentiregistratiById(idUtenteLoggato));
-                    sessione.setAttribute("idUtenteLoggato", idUtenteLoggato);
-                    sessione.setAttribute("loggato", true);
+                    
+                    sessione.setAttribute("loggedIn", true);
+                    sessione.setAttribute("loggedUserID", idUtenteLoggato);
+                    UtenteRegistrato loggedUser = UtentiregistratiFactory.getInstance().getUtentiregistratiById(idUtenteLoggato);
+                    sessione.setAttribute("loggedUser", loggedUser);
+                    
+                    if(loggedUser!=null && loggedUser.incompleto())
+                        request.getRequestDispatcher("Profilo").forward(request, response);
+                    else
+                        request.getRequestDispatcher("Bacheca").forward(request, response);
                     return;
+                    //sessione.setAttribute("utenteLoggato", UtentiregistratiFactory.getInstance().getUtentiregistratiById(idUtenteLoggato));
+                    //sessione.setAttribute("idUtenteLoggato", idUtenteLoggato);
+                    //sessione.setAttribute("loggedIn", true);
+                    //request.getRequestDispatcher("Bacheca").forward(request, response);
+                    //return;
                 } else { 
                     
                     //dati Sbagliati
                     request.setAttribute("datiSbagliati", true);
-                    request.getRequestDispatcher("M4/login.jsp").forward(request, response);
+                    request.getRequestDispatcher("M5/login.jsp").forward(request, response);
                     return;
                 }  
              }
         }
  
-        request.getRequestDispatcher("M4/login.jsp").forward(request, response);
+        request.getRequestDispatcher("M5/login.jsp").forward(request, response);
     }
     
     
@@ -104,11 +113,9 @@ public class Login extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
+       
             processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-        }
+      
     }
 
     /**
@@ -122,11 +129,9 @@ public class Login extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
+    
             processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
     }
 
     /**

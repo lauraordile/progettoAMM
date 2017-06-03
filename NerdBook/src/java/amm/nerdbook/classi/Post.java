@@ -16,7 +16,7 @@ public class Post {
     };
     
     protected int id;
-    protected UtenteRegistrato user;
+    public UtenteRegistrato user;
     private String contenutoTesto;
     private String url;
     private Type urlType;
