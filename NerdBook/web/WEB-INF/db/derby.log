@@ -12,3 +12,5 @@ os.arch=amd64
 os.version=10.0
 derby.system.home=C:\Users\Laura\Desktop\Facoltà\AMM\milestone4\progettoAMM\NerdBook\web\WEB-INF\db
 Programma di caricamento classe database avviato - derby.database.classpath=''
+----------------------------------------------------------------
+Fri Jun 09 23:21:36 CEST 2017: arresto in corso del motore di Derby
