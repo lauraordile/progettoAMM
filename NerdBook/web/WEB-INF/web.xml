@@ -20,11 +20,6 @@
         <servlet-name>NuovoPost</servlet-name>
         <servlet-class>amm.nerdbook.servlet.NuovoPost</servlet-class>
     </servlet>
-    </servlet> 
-    <servlet>
-        <servlet-name>NuovoPost</servlet-name>
-        <servlet-class>amm.nerdbook.servlet.NuovoPost</servlet-class>
-    </servlet>
     <servlet>
         <servlet-name>Filter</servlet-name>
         <servlet-class>amm.nerdbook.servlet.Filter</servlet-class>
