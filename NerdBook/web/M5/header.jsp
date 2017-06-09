@@ -18,9 +18,10 @@
     </c:if>
     <c:if test="${page!='login'}">
         <div id="title">
-            <h1>Nerdbook</h1>
+            <h1>Nerdbook</h1> 
+            <jsp:include page="nav.jsp"/>
         </div>
-        <jsp:include page="nav.jsp"/>
+       
     </c:if>       
     <c:if test ="${page=='bacheca'|| page=='profilo'}">
         <div class="persone">

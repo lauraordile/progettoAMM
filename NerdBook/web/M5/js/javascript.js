@@ -4,64 +4,15 @@
  * and open the template in the editor.
  */
 
-function createElement(user){//restituiamo un div di tipo user con immagine, un h2 ecc...
-    var img=$("<img>")
-            .attr("alt","FotoProfilo")
-            .attr("src",user.urlFotoProfilo);
-    var nome=$("<h2>").html(user.nome);
-    
-    var profilePic=$("<div>")
-            .attr("class","profilePic")
-            .append(img);
-    
-    return $("<div>")
-            .attr("class","user")
-            .append(profilePic)
-            .append(UserData);
-}
-function stateSucces(data){
-     var userListPage=$("#userList");
-     
-     $(userListPage).empty();
-     for(var instance in data){
-         $(userListPage).append(createElement(data[instance]));
-     }
-}
-function stateFailure(date,state){
-    console.log(state);
-}
-$(document).ready(function(){
-    $("serchYourUtente").click(function()){//serchyourUtente è il pulsante nell'html
-        var wantedUtente =$("searchField")[0].value;
-        
-        $.ajax({
-            url:"BachecaAjax",
-            data:{
-                cmd:"search",
-                nomeUtenteCercato:wantedUtente
-            },
-            dataType:"json",
-            success: function(data, state){
-                console.log(data);
-            },
-            error:function(data,state){
-                //stateFailuture(data,state)
-            }
-        });
-    });
-});
-
-
-
-function createElement(gtt){
+function createElement(user){
     var img = $("<img>")
-            .attr("alt","Foto Profilo")
-            .attr("src",gtt.urlFotoProfilo);
-    var name = $("<h2>").html(gtt.nome);
+            .attr("title","profilo"+user.id)
+            .attr("alt","foto profilo "+user.id)
+            .attr("src",user.urlProfilo);
+    var name = $("<h2>").html(user.nome);
     var link = $("<a>")
-            .attr("href", "index.html?user="+gtt.id)
+            .attr("href", "index.html?user="+user.id)
             .html("Link al Profilo");
-    
     var userData = $("<div>")
             .attr("class","userData")
             .append(name)
@@ -70,7 +21,6 @@ function createElement(gtt){
             .attr("class","profilePic")
             .append(img);
     
-    
     return $("<div>")
             .attr("class","user")
             .append(profilePic)
@@ -78,35 +28,42 @@ function createElement(gtt){
 }
 
 function stateSuccess(data){
-    var userListPage = $("#usersList");
+    var userListPage = $("#usersList"); 
     
     $(userListPage).empty();
+    
+    var label = $("<label>")
+                .html("Persone");
+    
+    $(userListPage).append(label);
+    
     for(var instance in data){
         $(userListPage).append(createElement(data[instance]));
     }
 }
+
 function stateFailure(data, state){
     console.log(state);
 }
 
 $(document).ready(function(){
-    $("#searchYourGato").click(function(){
+    $("#search").click(function(){
         
-        var wantedCat = $("#searchField")[0].value;
+        var wantedUser = $("#search")[0].value;
         
         $.ajax({
-            url: "CercaAmiciAjax",
+            url: "Filter",
             data:{
                 cmd:"search",
-                nomeGattoCercato: wantedCat
+                filtro: wantedUser
             },
             dataType:"json",
             success: function(data, state){
-                stateSuccess(data)
+                stateSuccess(data);
             },
             error: function(data, state){
-                stateFailure(data, state)
+                stateFailure(data, state);
             }
         });
-    })
+    });
 });

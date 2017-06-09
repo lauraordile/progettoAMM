@@ -51,6 +51,7 @@ public class Login extends HttpServlet {
         // logout
         if(request.getParameter("logout")!=null){
             sessione.invalidate();
+            request.setAttribute("loggedIn", false);
             request.getRequestDispatcher("M5/login.jsp").forward(request, response);
             return;
         }
@@ -58,27 +59,29 @@ public class Login extends HttpServlet {
         // sessione attiva 
         if (sessione.getAttribute("loggedIn") != null && sessione.getAttribute("loggedIn").equals(true)) {
             request.getRequestDispatcher("Bacheca").forward(request, response);
+            int loggedUserID = (int)sessione.getAttribute("loggedUserID");
+            UtenteRegistrato utente = UtentiregistratiFactory.getInstance().getUtentiregistratiById(loggedUserID);
             return;
         }
         else {
             // sessione non attiva
-            String username = request.getParameter("nome");
+            String email = request.getParameter("email");
             String password = request.getParameter("password");
         
-            if (username != null && password != null){
+            if (email != null && password != null){
                 // faccio il login
-                int idUtenteLoggato = UtentiregistratiFactory.getInstance().getIdByUserAndPassword(username, password);
+                int idUtenteLoggato = UtentiregistratiFactory.getInstance().getIdByUserAndPassword(email, password);
                 //se l'utente è valido...
                 if(idUtenteLoggato!=-1){
                     
                     sessione.setAttribute("loggedIn", true);
                     sessione.setAttribute("loggedUserID", idUtenteLoggato);
-                    UtenteRegistrato loggedUser = UtentiregistratiFactory.getInstance().getUtentiregistratiById(idUtenteLoggato);
-                    sessione.setAttribute("loggedUser", loggedUser);
+                    //UtenteRegistrato loggedUser = UtentiregistratiFactory.getInstance().getIdByUserAndPassword(email,password);
+                   // sessione.setAttribute("loggedUser", loggedUser);
                     
-                    if(loggedUser!=null && loggedUser.incompleto())
-                        request.getRequestDispatcher("Profilo").forward(request, response);
-                    else
+                   // if(loggedUser!=null && loggedUser.incompleto())
+                       // request.getRequestDispatcher("Profilo").forward(request, response);
+                    //else
                         request.getRequestDispatcher("Bacheca").forward(request, response);
                     return;
                     //sessione.setAttribute("utenteLoggato", UtentiregistratiFactory.getInstance().getUtentiregistratiById(idUtenteLoggato));

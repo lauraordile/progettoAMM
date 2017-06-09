@@ -19,7 +19,6 @@
 
         <!--Barra di navigazione tra le pagine del sito-->
         <c:set var="page" value="nuovopost" scope="request"/>
-        <jsp:include page="nav.jsp"/>
         <div id="divBody">
             <c:choose>
                 <c:when test="${empty newpost}">

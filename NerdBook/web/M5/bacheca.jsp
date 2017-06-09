@@ -15,11 +15,37 @@
         <meta name="author" content="Laura Ordile">
         <meta name="keywords" content="Social network ,Nerdbook, amicizie e tanto altro">
         <link rel="stylesheet" type="text/css" href="style.css" media="screen">
+
+        <script src="js/jquery-3.2.1.min.js"></script>
+        <script src="js/javascript.js"></script>
     </head>
     <body>
        <c:set var="page" value="bacheca" scope="request"/>
        <jsp:include page="header.jsp"/>
+       
+       <div id="divBody">
+            <div id="searchUtente">
+                <input id="searchField" type="text" placeholder="search User!" value="">
+                <button id="searchYourUser">Serch friend...</button>
+            </div>
+            <div id="usersList">
+                <c:forEach var="utente" items="${utenti}">
+                    <div class="user">
+                        <div class="profilePic">
+                            <img alt="Foto Profilo" src="${user.urlProfilo}">
+                        </div>
+                        <div class="userData">
+                            <h2>${user.nome} ${user.cognome}</h2>
+                            <a href="Bacheca?user=${user.id}">Link al profilo</a>
+                        </div>
+                    </div>
+                </c:forEach>
+</div>
+
+        </div>
        <jsp:include page ="nuovopost.jsp"/>
+       
+       
                <div id="posts">
                     <div id="newPost">
                         <form action="nuovopost.jsp" method="POST">
@@ -34,8 +60,8 @@
                                     </c:when>
                              </c:choose>
                   
-                </form>
-</div>
+                        </form>
+                    </div>
                    <c:forEach var="post" items="${listaPost}">
                        <div class="singp">
                             <div class="imge">

@@ -10,7 +10,7 @@
         <c:choose>
                 <c:when test="${page=='profilo'}">
                     <p>Daisy Duck</p>
-                    <ul id="log">
+                    <ul class="log">
                         <li><a href ="descrizione.jsp">Logout</a></li>
                     </ul>
                     <li class="activ"><a href="profilo.jsp" >Profilo</a></li>   
@@ -19,7 +19,7 @@
                 </c:when>
                 <c:when test="${page=='bacheca'}">
                     <p>Daisy Duck</p>
-                    <ul id="log">
+                    <ul class="log">
                         <li><a href ="descrizione.jsp">Logout</a></li>
                     </ul>
                     <li ><a href="profilo.jsp" >Profilo</a></li>   
